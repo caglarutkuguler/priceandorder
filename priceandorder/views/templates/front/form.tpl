@@ -2,7 +2,7 @@
 *	Module Name: Price and Order - Column Quote Form
 *	Module URI: Please contact with info@megventure.com
 *	Description: A Price Quoting Module for Demanded Orders
-*	Version: 1.9.2
+*	Version: 1.9.3
 *	Author: MEG Venture
 *
 *	Copyright 2011, MEG Venture (info@megventure.com)
@@ -202,13 +202,13 @@
 <!--Invisible Data Transfer Section--> 
 
 {if ($priceandorder->captcha=="Display:none") OR (Context::getContext()->customer->isLogged())}
-<input class="form-control" class='CaglarInput1' name='CaglarInput1' type='hidden' value='10'/>
+<input class="form-control" class='CaglarInputPO1' name='CaglarInputPO1' type='hidden' value='10'/>
 {else}             
 <!--CAPTCHA Security Section-->
 <div align="center" style="{$priceandorder->captcha}">
 <div style="float:left;padding:0px 2px;">{l s='What is' mod='priceandorder'}</div><div class="a" style="float:left;padding:0px 2px;"></div><div style="float:left;padding:0px 2px;">+</div><div class="b" style="float:left;padding:0px 2px;clear:right;"></div><div style="float:left;padding:0px 2px;">?</div>
-<input class='CaglarInput1' name='CaglarInput1' type='text' maxlength='2' size='2' style="width: 30px;float: left;clear: none;margin-top: -6px;height: 26px;text-align: center;"/>
-<input type="button" value="{l s='Check' mod='priceandorder'}" onclick="CaglarCodeCheck()" style="float: left;clear: none;height: 26px;margin-top: -6px;width: 25%;"/>
+<input class='CaglarInputPO1' name='CaglarInputPO1' type='text' maxlength='2' size='2' style="width: 30px;float: left;clear: none;margin-top: -6px;height: 26px;text-align: center;"/>
+<input type="button" value="{l s='OK' mod='priceandorder'}" onclick="CaglarCodeCheck()" style="float: left;clear: none;height: 26px;margin-top: -6px;width: 16%;"/>
 </div>
 <div class="human" style="text-align:center;font-size:small;color:#F00;font-weight:bold;clear:both;">{l s='Proove that you are human to see the Submit button' mod='priceandorder'}</div>
 <!--CAPTCHA Security Section-->
@@ -221,7 +221,13 @@
           <p align="center" style="padding-top: 20px;">
             <input type="reset" name="clear" id="clear" value="{l s='Reset Form' mod='priceandorder'}" class="button pricebutton btn btn-secondary" />
           </p>
-<!--Reset Button-->             
+<!--Reset Button-->
+          <div>
+            <label for="gdpr1" style="font-size:x-small;padding-top: 10px; text-align: left; width: 100%;">
+              <input style="width:7%;" data-toggle="switch" class="tiny" id="gdpr1" data-inverse="true" type="checkbox" name="gdpr1" value="true" checked> 
+              {l s='by continuing, you agree our ' mod='priceandorder'} <a href="{$priceandorder->terms_conditions_link}" target="_blank">{l s='Terms & Conditions' mod='priceandorder'}</a>&nbsp;{l s='and' mod='priceandorder'}&nbsp;<a href="{$priceandorder->privacy_policy_link}" target="_blank">{l s='Privacy Policy' mod='priceandorder'}</a><sup> *</sup>
+            </label>
+          </div>
       </td>
     </tr>
   </table>

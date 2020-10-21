@@ -4,7 +4,7 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: A Price Quoting Module for Demanded Orders
- *    Version: 1.9.2
+ *    Version: 1.9.3
  *
  * @author    Caglar Guler <info@megventure.com>
  * @copyright 2007-2020 MEG Venture
@@ -35,6 +35,8 @@ class PriceandorderClass extends ObjectModel
     public $paypal;
     public $first_order;
     public $more_info_link;
+    public $terms_conditions_link;
+    public $privacy_policy_link;
     public $most_ordered;
     public $recmail;
 
@@ -59,9 +61,11 @@ class PriceandorderClass extends ObjectModel
             'paypal' => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
             'first_order' => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName'),
             // Lang fields
-            'more_info_link' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
-            'most_ordered' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
-            'recmail' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'),
+            'more_info_link' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isString'),
+            'terms_conditions_link' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isString'),
+            'privacy_policy_link' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isString'),
+            'most_ordered' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isString'),
+            'recmail' => array('type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isString'),
         ),
     );
 

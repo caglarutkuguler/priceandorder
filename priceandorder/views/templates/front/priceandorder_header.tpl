@@ -2,7 +2,7 @@
 *	Module Name: Price & Order
 *	Module URI: Please contact with https://addons.prestashop.com/en/contact-form.php
 *	Description: A Price Quoting Module for Demanded Orders
-*	Version: 0.1.9.2
+*	Version: 0.1.9.3
 *	Author: MEG Venture
 *
 *	Copyright 2012, MEG Venture (https://addons.prestashop.com/en/contact-form.php)

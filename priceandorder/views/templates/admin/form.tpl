@@ -2,7 +2,7 @@
 *	Module Name: Price and Order - Column Quote Form
 *	Module URI: Please contact with info@megventure.com
 *	Description: A Price Quoting Module for Demanded Orders
-*	Version: 1.9.2
+*	Version: 1.9.3
 *	Author: MEG Venture
 *
 *	Copyright 2011, MEG Venture (info@megventure.com)

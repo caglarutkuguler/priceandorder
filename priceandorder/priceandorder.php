@@ -4,7 +4,7 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: A Price Quoting Module for Demanded Orders
- *    Version: 1.9.2
+ *    Version: 1.9.3
  *
  * @author    Caglar Guler <info@megventure.com>
  * @copyright 2007-2020 MEG Venture
@@ -41,7 +41,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '1.9.2';
+        $this->version = '1.9.3';
         $this->bootstrap = true;
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
@@ -155,7 +155,7 @@ class Priceandorder extends Module
 
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
-		VALUES("","priceandorder_piclink", "http://' . Configuration::get('PS_SHOP_DOMAIN') . '/modules/priceandorder/img/ms.png", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
+		VALUES("","priceandorder_piclink", "http://' . Configuration::get('PS_SHOP_DOMAIN') . '/modules/priceandorder/views/img/ms.png", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
 
@@ -193,7 +193,9 @@ class Priceandorder extends Module
 				CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'priceandorder_lang` (
 				`id_priceandorder` int(10) unsigned NOT NULL,
 				`id_lang` int(10) unsigned NOT NULL,
-				`more_info_link` varchar(255) NOT NULL,
+                `more_info_link` varchar(255) NOT NULL,
+                `terms_conditions_link` varchar(255) NOT null,
+                `privacy_policy_link` varchar(255) NOT null,
 				`most_ordered` varchar(255) NOT NULL,
 				`recmail` varchar(255) NOT NULL,
 				PRIMARY KEY (`id_priceandorder`, `id_lang`))
@@ -231,7 +233,9 @@ class Priceandorder extends Module
         $priceandorder->first_order = 'Display:block';
         foreach (Language::getLanguages(false) as $lang) {
             $priceandorder->more_info_link[$lang['id_lang']] = 'https://www.prestashop.com';
-            $priceandorder->most_ordered[$lang['id_lang']] = 'img/ms.png';
+            $priceandorder->terms_conditions_link[$lang['id_lang']] = 'https://test3.megventure.com/content/3-terms-and-conditions-of-use';
+            $priceandorder->privacy_policy_link[$lang['id_lang']] = 'https://test3.megventure.com/content/2-legal-notice';
+            $priceandorder->most_ordered[$lang['id_lang']] = 'views/img/ms.png';
             $priceandorder->recmail[$lang['id_lang']] = 'demo@demo.com';
         }
         return $priceandorder->add();
@@ -535,10 +539,24 @@ class Priceandorder extends Module
                     ),
                     array(
                         'type' => 'text',
+                        'label' => $this->l('Terms and Conditions Page Link'),
+                        'name' => 'terms_conditions_link',
+                        'lang' => true,
+                        'hint' => $this->l('This is the link of your website\'s Terms and Conditions Page to comply with the GDPR rules.'),
+                    ),
+                    array(
+                        'type' => 'text',
+                        'label' => $this->l('Privacy Policy Page Link'),
+                        'name' => 'privacy_policy_link',
+                        'lang' => true,
+                        'hint' => $this->l('This is the link of your website\'s Privacy Policy Page to comply with the GDPR rules.'),
+                    ),
+                    array(
+                        'type' => 'text',
                         'label' => $this->l('Most Ordered Product Picture Link'),
                         'name' => 'most_ordered',
                         'lang' => true,
-                        'desc' => $this->l('Picture size should be 144x98 px. Ex: img/ms.png'),
+                        'desc' => $this->l('Picture size should be 144x98 px. Ex: /modules/priceandorder/views/img/ms.png'),
                     ),
                     array(
                         'type' => 'radio',
@@ -698,9 +716,9 @@ class Priceandorder extends Module
             return $this->display(__FILE__, 'views/templates/front/priceandorder_header14.tpl');
         } else {
             if (version_compare(_PS_VERSION_, '1.6.0.0 ', '>')) {
-            $this->context->controller->addCSS(($this->_path) . 'views/css/priceandorder.css', 'all');
+                $this->context->controller->addCSS(($this->_path) . 'views/css/priceandorder.css', 'all');
             } else {
-                $this->context->controller->addCSS(($this->_path) . 'views/css/priceandorder17.css', 'all');  
+                $this->context->controller->addCSS(($this->_path) . 'views/css/priceandorder17.css', 'all');
             }
             $id_shop = (int) $this->context->shop->id;
             $priceandorder = PriceandorderClass::getByIdShop($id_shop);
@@ -723,7 +741,7 @@ class Priceandorder extends Module
             if (Tools::isSubmit('submit2')) {
                 $configPath = '../../config/config.inc.php';
                 $email = Tools::getValue('email');
-                $code = Tools::getValue('CaglarInput');
+                $code = Tools::getValue('CaglarInputPO');
                 $shipping_destination = Tools::getValue('shipping_destination');
                 $name = Tools::getValue('product');
                 $homedir = Tools::getValue('homedir');
@@ -798,7 +816,7 @@ class Priceandorder extends Module
                 $priceandorder_contactaddress = Tools::getValue('priceandorder_contactaddress');
                 $priceandorder_contacttown = Tools::getValue('priceandorder_contacttown');
                 $email = Tools::getValue('email');
-                $code = Tools::getValue('CaglarInput1');
+                $code = Tools::getValue('CaglarInputPO1');
                 $shipping_destination = Tools::getValue('shipping_destination');
                 $name = Tools::getValue('product');
                 $homedir = Tools::getValue('homedir');

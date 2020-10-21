@@ -2,7 +2,7 @@
 *	Module Name: Price and Order - Column Quote Form
 *	Module URI: Please contact with info@megventure.com
 *	Description: A Price Quoting Module for Demanded Orders
-*	Version: 1.9.2
+*	Version: 1.9.3
 *	Author: MEG Venture
 *
 *	Copyright 2011, MEG Venture (info@megventure.com)
@@ -51,9 +51,9 @@
 	$('.b').html(b);
 		
     function CaglarCodeCheck(){
-		var d = parseInt($('.CaglarInput1').val());
+		var d = parseInt($('.CaglarInputPO1').val());
     if (!d) {
-      var d = parseInt($('.CaglarInput1').eq(1).val());
+      var d = parseInt($('.CaglarInputPO1').eq(1).val());
     }
     if (d == c) {
       $('.human').hide();
@@ -74,19 +74,8 @@ if (thefield.defaultValue==thefield.value)
 
 var frmvalidator = new Validator("form1");
 frmvalidator.EnableMsgsTogether();
-
-if(document.form1.product)
-{
-	frmvalidator.addValidation("product","req","{l s='Requested product description is required.' mod='priceandorder'}"); 
-}
-
-if(document.form1.name_cust)
-{
-	frmvalidator.addValidation("name_cust","req","{l s='Contact name is required.' mod='priceandorder'}"); 
-}
-
-if(document.form1.email)
-{
-	frmvalidator.addValidation("email","email","{l s='Please enter a valid e-mail address.' mod='priceandorder'}"); 
-}
+frmvalidator.addValidation("product","req","{l s='Requested product description is required.' mod='priceandorder'}"); 
+frmvalidator.addValidation("name_cust","req","{l s='Contact name is required.' mod='priceandorder'}"); 
+frmvalidator.addValidation("email","email","{l s='Please enter a valid e-mail address.' mod='priceandorder'}"); 
+frmvalidator.addValidation("gdpr1","shouldselchk","{l s='You must accept the GDPR notice to proceed submission.' mod='priceandorder'}");
 </script>

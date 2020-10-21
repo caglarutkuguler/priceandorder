@@ -2,7 +2,7 @@
 *	Module Name: Price & Order
 *	Module URI: Please contact with https://addons.prestashop.com/en/contact-form.php
 *	Description: A Price Quoting Module for Demanded Orders
-*	Version: 0.1.9.2
+*	Version: 0.1.9.3
 *	Author: MEG Venture
 *
 *	Copyright 2012, MEG Venture (https://addons.prestashop.com/en/contact-form.php)
@@ -169,13 +169,13 @@ thefield.value = ""
 <!--Invisible Data Transfer Section--> 
 
 {if (Configuration::get("priceandorder_captcha")=="display:none") OR ($cookie->isLogged())}
-<input id='CaglarInput' name='CaglarInput' type='hidden' value='10'/>
+<input id='CaglarInputPO' name='CaglarInputPO' type='hidden' value='10'/>
 {else}       
 <!--CAPTCHA Security Section-->
 <div align="center" style="{$priceandorder->captcha}">
 <div style="float:left;padding:0px 2px;">{l s='What is' mod='priceandorder'}</div><div id="a" style="float:left;padding:0px 2px;"></div><div style="float:left;padding:0px 2px;">+</div><div id="b" style="float:left;padding:0px 2px;clear:right;"></div><div style="float:left;padding:0px 2px;">?</div>
-<input id='CaglarInput' name='CaglarInput' type='text' maxlength='2' size='2' style="width: 30px;float: left;clear: none;margin-top: -6px;height: 26px;text-align: center;"/>
-<input id="Button1" type="button" value="{l s='Check' mod='priceandorder'}" onclick="CaglarCodeCheck()" style="width: 20%;float: left;clear: none;height: 26px;margin-top: -6px;"/>
+<input id='CaglarInputPO' name='CaglarInputPO' type='text' maxlength='2' size='2' style="width: 30px;float: left;clear: none;margin-top: -6px;height: 26px;text-align: center;"/>
+<input id="Button1" type="button" value="{l s='OK' mod='priceandorder'}" onclick="CaglarCodeCheck()" style="width: 16%;float: left;clear: none;height: 26px;margin-top: -6px;"/>
 </div>
 <div id="human" style="text-align:center;width:90%;color:#F00;font-weight:bold;clear:both;">{l s='Proove that you are human to see the Submit button' mod='priceandorder'}</div>
 <!--CAPTCHA Security Section-->
@@ -191,7 +191,15 @@ thefield.value = ""
 <tr><td class="line_po_center">
 <div align="center"><input type="reset" name="clear" id="clear" value="{l s='Reset Form' mod='priceandorder'}" class="exclusive" /></div>
 </td></tr>
-<!--Reset Button-->             
+<!--Reset Button--> 
+<tr><td class="line_po_center"> 
+          <div>
+            <label for="gdpr1" style="font-size:x-small;padding-top: 10px; text-align: left; width: 100%;">
+              <input style="width:7%;" data-toggle="switch" class="tiny" id="gdpr1" data-inverse="true" type="checkbox" name="gdpr1" value="true" checked> 
+              {l s='by continuing, you agree our ' mod='priceandorder'} <a href="{$priceandorder->terms_conditions_link}" target="_blank">{l s='Terms & Conditions' mod='priceandorder'}</a>&nbsp;{l s='and' mod='priceandorder'}&nbsp;<a href="{$priceandorder->privacy_policy_link}" target="_blank">{l s='Privacy Policy' mod='priceandorder'}</a><sup> *</sup>
+            </label>
+          </div>
+</td></tr>        
 <tr><td class="line_po_center">
 <a href="{Configuration::get("priceandorder_infolink")}">{l s='For More Information please click here' mod='priceandorder'}</a>
 </td></tr>
@@ -219,7 +227,7 @@ thefield.value = ""
 	document.getElementById('b').innerHTML=b;
 		
     function CaglarCodeCheck(){
-        var d = document.getElementById('CaglarInput').value;
+        var d = document.getElementById('CaglarInputPO').value;
         if (d == c) {
 			document.getElementById("human").style.visibility='hidden';
       n = "{l s='ORDER NOW' mod='priceandorder'}";
@@ -237,19 +245,9 @@ thefield.value = ""
 <script type="text/javascript"> 
 var frmvalidator = new Validator("form1");
 frmvalidator.EnableMsgsTogether();
-
-if(document.form1.email)
-{
+frmvalidator.addValidation("product","req","{l s='Requested product description is required.' mod='priceandorder'}"); 
 frmvalidator.addValidation("email","email","{l s='Please enter a valid e-mail address.' mod='priceandorder'}"); 
-}
-else 
-{}
-if(document.form1.product)
-{
-frmvalidator.addValidation("product","req","{l s='Please enter product description.' mod='priceandorder'}"); 
-}
-else 
-{}
+frmvalidator.addValidation("gdpr1","shouldselchk","{l s='You must accept the GDPR notice to proceed submission.' mod='priceandorder'}"); 
 </script> 
 </div>
 </div>
