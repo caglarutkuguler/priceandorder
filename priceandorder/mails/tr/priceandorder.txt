@@ -1,0 +1,24 @@
+Merhaba {name_cust}
+
+Bu e-posta {shop_name} Fiyat Talep Sisteminden Otomatik olarak gönderilmiştir.
+
+Sitemizin fiyatlandırma özelliğini kullanmayı tercih ettiğiniz için teşekkür ederiz. Fiyat talebiniz tarafımızdan alınmış olup, en kısa sürede personelimiz sizinle irtibat kuracaktır. Lütfen e-posta adresinizin gelen kutusunu kontrol ediniz.
+
+Saygılarımızla,
+Site Yönetimi 
+
+E-posta adresiniz: {email}
+Telefonunuz: {phone}
+Adresiniz: {priceandorder_contactaddress}
+Iliniz: {priceandorder_contacttown}
+Talep Edilen Ürün Tanımı: {product}
+
+Notlar (varsa):
+- Miktar: -{shipping_quantity}
+- Kargo Varış: -{shipping_destination}
+{urgency}
+{paypal}
+{first_order}
+
+{shop_url} sitesi Prestashop™ tarafından desteklenmektedir.
+Bu modül megventure.com tarafından tasarlanmıştır.

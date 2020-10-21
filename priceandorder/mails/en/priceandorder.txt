@@ -1,0 +1,23 @@
+Hi {name_cust}
+
+{shop_name} Price and Order Quote System sent you an automated mail.
+
+Thanks for using Price and Order Quote feature of our website. Your quote request has been received by us and our crew will contact with you in a timely manner. Please check your inbox soon.
+
+Best regards,
+Website Admin
+
+Your Email Address Provided: {email}
+Your Phone Number Provided: {phone}
+Your Address: {priceandorder_contactaddress}
+Your Town: {priceandorder_contacttown}
+Requested Product Description: {product}
+
+Notes(if any):
+- Quantity: -{shipping_quantity}
+- Destination: -{shipping_destination}
+{urgency}
+{paypal}
+{first_order}
+
+{shop_url} Proudly Powered by Prestashop™

@@ -1,0 +1,23 @@
+Salut {name_cust}
+
+{shop_name} Système Meilleur Prix a vous envoyé un mail automatisé.
+
+Merci pour avoir utilisé Meilleur Prix fonction de notre site Web. Votre demande de soumission a été reçue par nous et notre équipe prendra contact avec vous en temps opportun. Vérifiez votre boîte de réception bientôt, s'il vous plaît. 
+
+Cordialement,
+Admin Site Web
+
+Votre E-mail: {email}
+Votre Numéro de téléphone: {phone}
+Votre Addresse: {priceandorder_contactaddress}
+Votre Ville: {priceandorder_contacttown}
+Description du produit demandé: {product}
+
+Notes (le cas échéant):
+- Quantité: -{shipping_quantity}
+- Destination: -{shipping_destination}
+{urgency}
+{paypal}
+{first_order}
+
+{shop_url} propulsé par Prestashop™

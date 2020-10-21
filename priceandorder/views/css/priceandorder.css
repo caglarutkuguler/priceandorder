@@ -1,0 +1,148 @@
+/*
+	*	Module Name: Price & Order
+	*	Module URI: Please contact with https://addons.prestashop.com/en/contact-form.php
+	*	Description: A Price Quoting Module for Demanded Orders
+	*	Version: 0.1.9.2
+	*	Author: MEG Venture
+	*
+	*	Copyright 2012, MEG Venture (https://addons.prestashop.com/en/contact-form.php)
+	*
+	*	This program is not a free software: you can't redistribute it and/or modify
+	*	it. All rights reserved to Caglar Utku GULER
+	*
+	*
+	*	This copyright notice  and licence should be retained in all modules based on this framework.
+	*	This does not affect your rights to assert copyright over your own original work.
+	*/
+
+.priceandorder_align_center { 
+	text-align: center 
+}
+.priceandorder_bold { 
+	font-weight: bold 
+}
+
+form.priceandorder { 
+	clear: both 
+}
+form.priceandorder h3 {
+	color: #555;
+	font-size: 1.4em;
+	font-weight: normal;
+	border-bottom: 1px solid #d0d1d5;
+	padding: 0.5em;
+	margin: 0 0 0.5em 0
+}
+form.priceandorder fieldset {
+	border: 1px solid #d0d3d8;
+	margin-bottom: 1em;
+	padding-bottom: 1em
+}
+form.priceandorder legend {
+	padding: 0.3em 0.6em;
+	margin: 1em 0 1em 0.5em;
+	font-size: 1.6em;
+	font-weight: 100;
+	border-color: #d0d1d5;
+	border-style: solid;
+	border-width: 1px
+}
+form.priceandorder h4, form.priceandorder p {
+	padding: 0.3em 1em;
+	clear: both
+}
+form.priceandorder label, form.priceandorder p span {
+	float: left;
+	text-align: right;
+	width: 30%
+}
+form.priceandorder p span.like_input {
+	width: auto;
+	margin-left: 0.7em
+}
+.form1 input, .form1 textarea, .form1 select, .form1 span.editable {
+	margin-left: 0.7em;
+	font-size: 12px;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	outline: none;
+	padding-bottom: 2px;
+	width:90%;
+	float:left;
+	clear:both;	
+}
+.form1 input, .form1 textarea, .form1 select { 
+	border: 1px solid #bdc2c9 
+}
+.form1 input.text {
+	height: 18px;
+	padding-left: 2px;
+	padding-right: 2px
+}
+.checkbox input, .radio input { 
+	border: none
+}
+form.priceandorder .checkbox label, form.priceandorder .radio label, form.priceandorder span.form_info {
+	margin: 0;
+	float: none;
+	text-align: left
+}
+form.priceandorder sup { 
+	color: #da0f00;float:left;
+}
+form.priceandorder p.checkbox { 
+	padding-left: 30% 
+}
+form.priceandorder p.submit {
+	padding-left: 31%!important;
+	margin-bottom: 1.5em
+}
+#center_column form.priceandorder p.submit2 {
+	padding-left: 170px;
+	margin-bottom: 1.5em
+}
+.line_bq {
+	text-align: justify;
+	padding-bottom: 15px;
+}
+.line_bq_center {
+	text-align: center;
+}
+.line_bq_center1 {
+	text-align: center;
+	padding-bottom: 5px;
+}
+.line_bq_center1 .checker, .line_bq_center .checker {
+	float:left;
+}
+sup {
+	color:#F00;
+	}
+.pricebutton {
+	text-align:center !important;
+	margin-top:10px;
+}
+#urg1, #urg2 {
+	width:10%; float:none;margin-top:5px;
+}
+
+.block-priceandorder {
+	box-shadow: 2px 2px 11px 0 rgba(0,0,0,.1);
+    background: #fff;
+    padding: 1.5625rem 1.25rem;
+    margin-bottom: 1.5625rem;
+    font-size: .875rem;
+}
+@media (max-width: 768px) {
+	#priceandorder_hidden_footer {
+		display: block;
+	}
+}
+@media (min-width: 768px) {
+	#priceandorder_hidden_footer {
+		display: none;
+	}
+}
+#footer_priceandorder_gif{
+	text-align:center;
+}
+/* priceandorder module form style */

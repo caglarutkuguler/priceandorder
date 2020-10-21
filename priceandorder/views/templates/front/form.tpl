@@ -1,0 +1,239 @@
+{*
+*	Module Name: Price and Order - Column Quote Form
+*	Module URI: Please contact with info@megventure.com
+*	Description: A Price Quoting Module for Demanded Orders
+*	Version: 1.9.2
+*	Author: MEG Venture
+*
+*	Copyright 2011, MEG Venture (info@megventure.com)
+*
+*	This program is not a free software: you can't redistribute it and/or modify
+*	it. All rights reserved.
+*
+*
+*	This copyright notice  and licence should be retained in all modules based on this framework.
+*	This does not affect your rights to assert copyright over your own original work.
+*}
+
+{if isset($confirmation1)}<div style="background:#3F6; padding:5px; border:thin; border-color:#030; text-align:center">{l s='Your quote request has been successfully sent to our team.' mod='priceandorder'}</div><br />{else}{/if}
+<form action="{$request_uri|escape:'htmlall':'UTF-8'}" method="post" name="form1" id="form1" class="form1">
+
+  <table border="0" cellspacing="5" cellpadding="6" class="form-group">
+  {if Context::getContext()->customer->isLogged()}
+    <tr>
+      <td>
+		{$cookie->customer_firstname} {$cookie->customer_lastname},<br />{l s='If you want to get the best price for the product you looking for, please fill in the empty box below.' mod='priceandorder'}
+        </td>
+    </tr>
+	{else}
+    <tr>
+      <td>    
+        {l s='Dear Visitor' mod='priceandorder'}, <br />{l s='If you want to get the best price for the product you looking for, please fill in the boxes below.' mod='priceandorder'}
+        </td>
+    </tr>    
+    {/if}
+
+    <tr>
+      <td>
+        <span>{l s='Please write product(s) name and model or website link' mod='priceandorder'}<sup> *</sup></span>
+        <textarea style="width: -webkit-fill-available;" name="product" cols="20"  rows="5" id="product"></textarea>
+      </td>
+    </tr>
+
+{if ($priceandorder->customername=="Display:none") AND ($priceandorder->contactaddress=="Display:none") AND ($priceandorder->contacttown=="Display:none") AND ($priceandorder->phone=="Display:none") AND ($priceandorder->contactemail=="Display:none")}
+{else}
+<tr>
+<td colspan="2">
+<hr />
+<h5>{l s='Contact Information' mod='priceandorder'}</h5>
+</td>
+</tr> 
+{/if}   
+
+{if Context::getContext()->customer->isLogged()}     
+{if $priceandorder->customername=="Display:none"}
+<input class="form-control" name="name_cust" type="hidden" value="{$cookie->customer_firstname} {$cookie->customer_lastname}"  size ="23" maxlength="70" />
+{else}
+<tr>
+<td colspan="2">
+	<label class="form-control-label" for="name_cust">{l s='Full name' mod='priceandorder'}</label><sup> *</sup>
+    <input class="form-control" name="name_cust" type="text" value="{$cookie->customer_firstname} {$cookie->customer_lastname}" onFocus="clearText(this)"  size ="23" maxlength="70" />
+</p>
+</td>
+</tr> 
+{/if}
+{else}
+{if $priceandorder->customername=="Display:none"}
+<input class="form-control" name="name_cust" type="hidden" value="{l s='Not entered' mod='priceandorder'}"  size ="23" maxlength="70" />
+{else}
+<tr>
+<td colspan="2">      
+	<label class="form-control-label" for="name_cust">{l s='Full name' mod='priceandorder'}</label><sup> *</sup>
+	<input class="form-control" name="name_cust" type="text" value="" size ="23" maxlength="70" />    
+</td>
+</tr>        
+{/if}
+{/if}
+
+{if $priceandorder->contactaddress=="Display:none"}
+{else}
+<tr>
+<td colspan="2">
+	<label class="form-control-label" for="priceandorder_contactaddress">{l s='Address' mod='priceandorder'}</label>
+    <input class="form-control" name="priceandorder_contactaddress" type="text" value="" size ="23" maxlength="255" />
+</td>
+</tr> 
+{/if}     
+
+{if $priceandorder->contacttown=="Display:none"}
+{else}
+<tr>
+<td colspan="2">
+	<label class="form-control-label" for="priceandorder_contacttown">{l s='Town (City)' mod='priceandorder'}</label>
+    <input class="form-control" name="priceandorder_contacttown" type="text" value="" size ="23" maxlength="255" />
+</td>
+</tr> 
+{/if}
+
+{if $priceandorder->phone=="Display:none"}
+{else}
+<tr>
+<td colspan="2">
+	<label class="form-control-label" for="phone">{l s='Phone number' mod='priceandorder'}</label>
+    <input class="form-control" name="phone" type="text" value="" size ="23" maxlength="70" />   
+</td>
+</tr>        
+{/if}
+
+{if Context::getContext()->customer->isLogged()}
+	{if $priceandorder->contactemail=="Display:none"}
+		<input class="form-control" name="email" type="hidden" value="{$cookie->email}" size ="23" maxlength="70" />
+	{else}
+		<tr>
+		<td colspan="2">
+			<label class="form-control-label" for="email">{l s='E-mail Address' mod='priceandorder'}</label><sup> *</sup>	
+    		<input class="form-control" name="email" type="text" value="{$cookie->email}"  onFocus="clearText(this)" size ="23" maxlength="70" />
+		</td>
+		</tr> 
+	{/if}
+{else}
+	<tr>
+	<td colspan="2">         
+		<label class="form-control-label" for="email">{l s='E-mail Address' mod='priceandorder'}</label><sup> *</sup>
+		<input class="form-control" name="email" type="text" value="{l s='Required for Contact' mod='priceandorder'}" onFocus="clearText(this)" size ="23" maxlength="70" />
+	</td>
+	</tr>
+{/if}
+
+{if ($priceandorder->quantity=="Display:none") AND ($priceandorder->destination=="Display:none") AND ($priceandorder->urgency=="Display:none") AND ($priceandorder->paypal=="Display:none") AND ($priceandorder->first_order=="Display:none")}
+{else}
+<tr>
+<td colspan="2">
+<hr />
+<h5>{l s='Other Details' mod='priceandorder'}</h5>
+</td>
+</tr> 
+{/if}   
+
+{if $priceandorder->quantity=="Display:none"}
+{else}
+<tr>
+<td colspan="2">
+	<label class="form-control-label" for="shipping_quantity">{l s='Shipping quantity' mod='priceandorder'}</label>
+    <input class="form-control" name="shipping_quantity" type="text" id="shipping_quantity" value="" size ="23" maxlength="70" />
+</td>
+</tr>        
+{/if}     
+ 
+{if $priceandorder->destination=="Display:none"}
+{else}
+<tr>
+<td colspan="2">
+	<label class="form-control-label" for="shipping_destination">{l s='Shipping destination' mod='priceandorder'}</label>
+    <input class="form-control" name="shipping_destination" type="text" id="shipping_destination" value="" size ="23" maxlength="70" />
+</td>
+</tr>   
+{/if} 
+    
+{if $priceandorder->urgency=="Display:none"}
+{else}
+<tr>    
+<td align="center">
+	<label class="form-control-label" for="urg1">{l s=' Urgent' mod='priceandorder'}</label>
+    <input type="radio" name="urgency" id="urg1" value="{l s='- Urgent response needed' mod='priceandorder'}" checked="checked"/>
+
+	<label class="form-control-label" for="urg2">{l s=' Not Urgent' mod='priceandorder'}</label>
+	<input type="radio" name="urgency" id="urg2" value="{l s='- Urgent response is not needed' mod='priceandorder'}"/><br>
+	<br>
+</td>
+</tr>   
+{/if}
+
+{if $priceandorder->paypal=="Display:none"}
+&nbsp;
+{else}
+<tr>    
+<td colspan="2">
+<input style="width:20px;float:left;" name="paypal" type="checkbox" value="{l s='- Customer has a PayPal account' mod='priceandorder'}" /><div style="float:left;line-height: 12px;">{l s=' I have PayPal account' mod='priceandorder'}</div>
+</td>
+</tr>
+{/if}
+
+{if $priceandorder->first_order=="Display:none"}
+&nbsp;
+{else}
+<tr>
+<td>
+<input style="width:20px;float:left;" name="first_order" type="checkbox" value="{l s='- This will be the first order of the customer' mod='priceandorder'}" /><div style="float:left;line-height: 12px;">{l s=' This is my first order' mod='priceandorder'}</div>              
+<br>
+</td>
+</tr>  
+<tr><td style="padding-top:10px;padding-bottom:10px;font-size:small;"><sup>* </sup>{l s='denotes required fields' mod='priceandorder'} </td></tr>
+ 
+{/if}
+          
+    <tr>
+      <td>
+<!--Invisible Data Transfer Section-->      
+<input class="form-control" name="language" type="hidden" id="language" value="{(!isset($cookie) OR !is_object($cookie)) ? (int)(Configuration::get('PS_LANG_DEFAULT')) : (int)($cookie->id_lang)}"/>
+<input class="form-control" name="homedir" type="hidden" id="homedir" value="{$base_dir}"/> 
+<input class="form-control" name="recipient_address" type="hidden" id="recipient_address" value="{$priceandorder->recmail|stripslashes}"/>
+<input class="form-control" name="shop_logo" type="hidden" id="shop_logo" value="{$img_ps_dir}logo.jpg"/>
+<!--Invisible Data Transfer Section--> 
+
+{if ($priceandorder->captcha=="Display:none") OR (Context::getContext()->customer->isLogged())}
+<input class="form-control" class='CaglarInput1' name='CaglarInput1' type='hidden' value='10'/>
+{else}             
+<!--CAPTCHA Security Section-->
+<div align="center" style="{$priceandorder->captcha}">
+<div style="float:left;padding:0px 2px;">{l s='What is' mod='priceandorder'}</div><div class="a" style="float:left;padding:0px 2px;"></div><div style="float:left;padding:0px 2px;">+</div><div class="b" style="float:left;padding:0px 2px;clear:right;"></div><div style="float:left;padding:0px 2px;">?</div>
+<input class='CaglarInput1' name='CaglarInput1' type='text' maxlength='2' size='2' style="width: 30px;float: left;clear: none;margin-top: -6px;height: 26px;text-align: center;"/>
+<input type="button" value="{l s='Check' mod='priceandorder'}" onclick="CaglarCodeCheck()" style="float: left;clear: none;height: 26px;margin-top: -6px;width: 25%;"/>
+</div>
+<div class="human" style="text-align:center;font-size:small;color:#F00;font-weight:bold;clear:both;">{l s='Proove that you are human to see the Submit button' mod='priceandorder'}</div>
+<!--CAPTCHA Security Section-->
+{/if} 
+
+<!--Submit Button-->
+   <input type="hidden" class="recaptcha_submit_replace">
+<!--Submit Button-->          
+<!--Reset Button-->          
+          <p align="center" style="padding-top: 20px;">
+            <input type="reset" name="clear" id="clear" value="{l s='Reset Form' mod='priceandorder'}" class="button pricebutton btn btn-secondary" />
+          </p>
+<!--Reset Button-->             
+      </td>
+    </tr>
+  </table>
+</form>   
+
+{if ($priceandorder->captcha=="Display:none") OR (Context::getContext()->customer->isLogged())}
+<script>
+    n = "{l s='ORDER NOW' mod='priceandorder'}";
+    $(".recaptcha_submit_replace").replaceWith("<p align='center' style='padding-top:20px;'><input type='submit' name='submit1' style='margin-top:10px;'  value='" + n + "' class='button pricebutton btn btn-primary submit1'/></p>");
+</script>
+{/if}
+          <p align="center"><a href="{$priceandorder->more_info_link|stripslashes}">{l s='For More Information please click here' mod='priceandorder'}</a></p>
+          <p align="center">{l s=' MOST ORDERED' mod='priceandorder'}</p>
+          <p align="center"><img src="{$module_dir}{$priceandorder->most_ordered|stripslashes}" alt="most ordered product's image"/></p>
+

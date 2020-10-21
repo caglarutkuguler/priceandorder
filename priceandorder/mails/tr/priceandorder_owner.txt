@@ -1,0 +1,18 @@
+Aşağıdaki metin Fiyat Talep Sisteminden otomatik olarak gönderilmiştir.
+
+Lütfen fiyat bilgisini en kısa zamanda {email} adresine gönderiniz.
+
+Müsteri Adi: {name_cust}
+Müsteri Telefonu: {phone} 
+Müsteri Adresi: {priceandorder_contactaddress}
+Müsteri ili: {priceandorder_contacttown}
+Müşteri E-posta Adresi: {email}
+
+Talep Edilen Ürün:{product}
+
+Notlar(varsa):
+- Miktar: -{shipping_quantity}
+- Kargo Varış: -{shipping_destination}
+{urgency}
+{paypal}
+{first_order} 

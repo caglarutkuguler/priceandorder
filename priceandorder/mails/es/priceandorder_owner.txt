@@ -1,0 +1,14 @@
+El sistema automático de pedidos envió su solicitud de presupuesto debajo.
+
+Por favor envíe la información sobre los precios, dimensiones y cantidad a {email} a.s.a.p.
+
+Cliente Email Dirección: {email}
+Descripción del producto solicitado: {product}
+
+Notas(si lo hubiera):
+- Destinación: -{shipping_destination}
+{urgeny}
+{paypal}
+{first_order}
+
+{shop_url} Desarrollado por PrestaShop

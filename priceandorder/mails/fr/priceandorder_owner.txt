@@ -1,0 +1,19 @@
+Ci-dessous le texte est envoyé par le Meilleur Prix System.
+
+S'il vous plaît, envoyez le prix et les informations relatives bientôt à {email}
+
+Nom du client: {name_cust}
+Adresse Email de Client: {email}
+Numéro de téléphone à la clientèle: {phone}
+Adresse de Client: {priceandorder_contactaddress}
+Ville: {priceandorder_contacttown}
+Description du produit demandé: {product}
+
+Notes (le cas échéant):
+- Quantité: -{shipping_quantity}
+- Destination: -{shipping_destination}
+{urgency}
+{paypal}
+{first_order}
+
+{shop_url} propulsé par PrestaShop

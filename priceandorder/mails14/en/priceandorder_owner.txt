@@ -1,0 +1,14 @@
+Below request is sent by the automated Price and Order System.
+
+Please send the price and regarding quote information to {email} a.s.a.p.
+
+Customer Email Address: {email}
+Requested Product Description: {product}
+
+Notes(if any):
+- Destination: -{shipping_destination}
+{urgency}
+{paypal}
+{first_order}
+
+{shop_url} Proudly Powered by PrestaShop
