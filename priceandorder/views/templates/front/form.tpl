@@ -2,7 +2,7 @@
 *	Module Name: Price and Order - Column Quote Form
 *	Module URI: Please contact with info@megventure.com
 *	Description: A Price Quoting Module for Demanded Orders
-*	Version: 1.9.3
+*	Version: 1.9.4
 *	Author: MEG Venture
 *
 *	Copyright 2011, MEG Venture (info@megventure.com)
@@ -22,7 +22,7 @@
   {if Context::getContext()->customer->isLogged()}
     <tr>
       <td>
-		{$cookie->customer_firstname} {$cookie->customer_lastname},<br />{l s='If you want to get the best price for the product you looking for, please fill in the empty box below.' mod='priceandorder'}
+		{$customer.firstname} {$customer.lastname},<br />{l s='If you want to get the best price for the product you looking for, please fill in the empty box below.' mod='priceandorder'}
         </td>
     </tr>
 	{else}
@@ -52,12 +52,12 @@
 
 {if Context::getContext()->customer->isLogged()}     
 {if $priceandorder->customername=="Display:none"}
-<input class="form-control" name="name_cust" type="hidden" value="{$cookie->customer_firstname} {$cookie->customer_lastname}"  size ="23" maxlength="70" />
+<input class="form-control" name="name_cust" type="hidden" value="{$customer.firstname} {$customer.lastname}"  size ="23" maxlength="70" />
 {else}
 <tr>
 <td colspan="2">
 	<label class="form-control-label" for="name_cust">{l s='Full name' mod='priceandorder'}</label><sup> *</sup>
-    <input class="form-control" name="name_cust" type="text" value="{$cookie->customer_firstname} {$cookie->customer_lastname}" onFocus="clearText(this)"  size ="23" maxlength="70" />
+    <input class="form-control" name="name_cust" type="text" value="{$customer.firstname} {$customer.lastname}" onFocus="clearText(this)"  size ="23" maxlength="70" />
 </p>
 </td>
 </tr> 
@@ -107,12 +107,12 @@
 
 {if Context::getContext()->customer->isLogged()}
 	{if $priceandorder->contactemail=="Display:none"}
-		<input class="form-control" name="email" type="hidden" value="{$cookie->email}" size ="23" maxlength="70" />
+		<input class="form-control" name="email" type="hidden" value="{$customer.email}" size ="23" maxlength="70" />
 	{else}
 		<tr>
 		<td colspan="2">
 			<label class="form-control-label" for="email">{l s='E-mail Address' mod='priceandorder'}</label><sup> *</sup>	
-    		<input class="form-control" name="email" type="text" value="{$cookie->email}"  onFocus="clearText(this)" size ="23" maxlength="70" />
+    		<input class="form-control" name="email" type="text" value="{$customer.email}"  onFocus="clearText(this)" size ="23" maxlength="70" />
 		</td>
 		</tr> 
 	{/if}

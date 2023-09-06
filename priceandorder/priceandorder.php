@@ -4,10 +4,10 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: A Price Quoting Module for Demanded Orders
- *    Version: 1.9.3
+ *    Version: 1.9.4
  *
  * @author    Caglar Guler <info@megventure.com>
- * @copyright 2007-2020 MEG Venture
+ * @copyright 2007-2023 MEG Venture
  * @license   Copyright 2012, Caglar Guler (info@megventure.com)
  *    This program is not a free software: you can't redistribute it and/or modify
  *    it. All rights reserved.
@@ -18,16 +18,13 @@
  *    This license is also in force.
  *
  */
-
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-
 class Priceandorder extends Module
 {
     private $_html = '';
     private $_postErrors = array();
-
     public $recmail;
     public $infolink;
     public $destination;
@@ -36,12 +33,11 @@ class Priceandorder extends Module
     public $urgency;
     public $paypal;
     public $first_order;
-
     public function __construct()
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '1.9.3';
+        $this->version = '1.9.4';
         $this->bootstrap = true;
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
@@ -50,115 +46,93 @@ class Priceandorder extends Module
         if (isset($config[$this->name . '_recmail'])) {
             $this->recmail = $config[$this->name . '_recmail'];
         }
-
         if (isset($config[$this->name . '_infolink'])) {
             $this->infolink = $config[$this->name . '_infolink'];
         }
-
         if (isset($config[$this->name . '_urgency'])) {
             $this->urgency = $config[$this->name . '_urgency'];
         }
-
         if (isset($config[$this->name . '_paypal'])) {
             $this->paypal = $config[$this->name . '_paypal'];
         }
-
         if (isset($config[$this->name . '_first_order'])) {
             $this->first_order = $config[$this->name . '_first_order'];
         }
-
         if (isset($config[$this->name . '_destination'])) {
             $this->destination = $config[$this->name . '_destination'];
         }
-
         if (isset($config[$this->name . '_piclink'])) {
             $this->piclink = $config[$this->name . '_piclink'];
         }
-
         if (isset($config[$this->name . '_captcha'])) {
             $this->captcha = $config[$this->name . '_captcha'];
         }
-
         parent::__construct();
-
         $this->displayName = $this->l('Price and Order - Column Quote Form');
         $this->description = $this->l('Use this module to put a column form to your website to be able to provide the best and fastest price quotes to the demanded products.');
-
         /* Backward compatibility */
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
             require _PS_MODULE_DIR_ . $this->name . '/backward_compatibility/backward.php';
         }
-
         $path = dirname(__FILE__);
         if (strpos(__FILE__, 'Module.php') !== false) {
             $path .= '/../modules/' . $this->name;
         }
-
         include_once $path . '/classes/PriceandorderClass.php';
-
         $this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
         if (!isset($this->recmail) || !isset($this->infolink) || !isset($this->destination) || !isset($this->piclink) || !isset($this->captcha)) {
             $this->warning = $this->l('Required fields and options must be configured in order to use this module correctly.');
         }
-
         if (!isset($this->recmail) or ($this->recmail == "demo@demo.com")) {
             $this->warning = $this->l('Quote recipient e-mail can not be empty/should be changed in order to use this module correctly.');
         }
     }
-
     public function install()
     {
         if (Shop::isFeatureActive()) {
             Shop::setContext(Shop::CONTEXT_ALL);
         }
-
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
-            if (!parent::install() || !$this->registerHook('rightColumn') || !$this->registerHook('header')) {
+            if (!parent::install() 
+            || !$this->registerHook('rightColumn') 
+            || !$this->registerHook('header')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_recmail", "' . Configuration::get('PS_SHOP_EMAIL') . '", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_destination", "display:block", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_captcha", "display:none", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_urgency", "display:block", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_paypal", "display:block", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_infolink", "http://' . Configuration::get('PS_SHOP_DOMAIN') . '", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_piclink", "http://' . Configuration::get('PS_SHOP_DOMAIN') . '/modules/priceandorder/views/img/ms.png", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
                 return false;
             }
-
             if (!Db::getInstance()->Execute('
 		INSERT INTO `' . _DB_PREFIX_ . 'configuration`(`id_configuration`, `name`, `value`, `date_add`, `date_upd`)
 		VALUES("","priceandorder_first_order", "display:block", "2012-03-29 00:08:22", "2012-04-02 12:42:16")')) {
@@ -166,10 +140,11 @@ class Priceandorder extends Module
             }
             return true;
         } else {
-            if (!parent::install() || !$this->registerHook('header') || !$this->registerHook('leftColumn')) {
+            if (!parent::install() 
+                || !$this->registerHook('displayHeader')
+                || !$this->registerHook('leftColumn')) {
                 return false;
             }
-
             $res = Db::getInstance()->execute('
 			CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'priceandorder` (
 			`id_priceandorder` int(10) unsigned NOT NULL auto_increment,
@@ -187,7 +162,6 @@ class Priceandorder extends Module
 			`first_order` varchar(255) NOT NULL,
 			PRIMARY KEY (`id_priceandorder`))
 			ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8');
-
             if ($res) {
                 $res &= Db::getInstance()->execute('
 				CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'priceandorder_lang` (
@@ -201,21 +175,17 @@ class Priceandorder extends Module
 				PRIMARY KEY (`id_priceandorder`, `id_lang`))
 				ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=utf8');
             }
-
             if ($res) {
                 foreach (Shop::getShops(false) as $shop) {
                     $res &= $this->createExamplePriceandorder($shop['id_shop']);
                 }
             }
-
             if (!$res) {
                 $res &= $this->uninstall();
             }
-
             return $res;
         }
     }
-
     private function createExamplePriceandorder($id_shop)
     {
         $priceandorder = new PriceandorderClass();
@@ -233,14 +203,13 @@ class Priceandorder extends Module
         $priceandorder->first_order = 'Display:block';
         foreach (Language::getLanguages(false) as $lang) {
             $priceandorder->more_info_link[$lang['id_lang']] = 'https://www.prestashop.com';
-            $priceandorder->terms_conditions_link[$lang['id_lang']] = 'https://test3.megventure.com/content/3-terms-and-conditions-of-use';
-            $priceandorder->privacy_policy_link[$lang['id_lang']] = 'https://test3.megventure.com/content/2-legal-notice';
+            $priceandorder->terms_conditions_link[$lang['id_lang']] = 'https://www.prestashop.com/en/terms-of-use';
+            $priceandorder->privacy_policy_link[$lang['id_lang']] = 'https://www.prestashop.com/en/prestashop-account-privacy';
             $priceandorder->most_ordered[$lang['id_lang']] = 'views/img/ms.png';
             $priceandorder->recmail[$lang['id_lang']] = 'demo@demo.com';
         }
         return $priceandorder->add();
     }
-
     public function uninstall()
     {
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
@@ -255,20 +224,16 @@ class Priceandorder extends Module
                 || !parent::uninstall()) {
                 return false;
             }
-
             return true;
         } else {
             $res = Db::getInstance()->execute('DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'priceandorder`');
             $res &= Db::getInstance()->execute('DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'priceandorder_lang`');
-
             if (!$res || !parent::uninstall()) {
                 return false;
             }
-
             return true;
         }
     }
-
     private function _postValidation()
     {
         if (Tools::isSubmit('submit')) {
@@ -287,7 +252,6 @@ class Priceandorder extends Module
             }
         }
     }
-
     private function initForm()
     {
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
@@ -296,7 +260,6 @@ class Priceandorder extends Module
             foreach ($languages as $k => $language) {
                 $languages[$k]['is_default'] = (int) ($language['id_lang'] == Configuration::get('PS_LANG_DEFAULT'));
             }
-
             $helper = new HelperForm();
             $helper->module = $this;
             $helper->name_controller = 'priceandorder';
@@ -310,7 +273,6 @@ class Priceandorder extends Module
             $helper->toolbar_btn = $this->initToolbar();
             $helper->title = $this->displayName;
             $helper->submit_action = 'submitUpdatePriceandorder';
-
             $this->fields_form[0]['form'] = array(
                 'tinymce' => true,
                 'legend' => array(
@@ -583,17 +545,14 @@ class Priceandorder extends Module
             return $helper;
         }
     }
-
     private function initToolbar()
     {
         $this->toolbar_btn['save'] = array(
             'href' => '#',
             'desc' => $this->l('Save'),
         );
-
         return $this->toolbar_btn;
     }
-
     public function getContent()
     {
         $this->_html = '';
@@ -602,7 +561,6 @@ class Priceandorder extends Module
             if (Tools::isSubmit('submit')) {
                 // Forbidden key
                 $forbidden = array('submit');
-
                 $this->_postValidation();
                 if (!sizeof($this->_postErrors)) {
                     $this->postProcess();
@@ -615,25 +573,19 @@ class Priceandorder extends Module
             return $this->_html . $this->displayForm();
         } else {
             $this->postProcess();
-
             $helper = $this->initForm();
-
             $id_shop = (int) $this->context->shop->id;
             $priceandorder = PriceandorderClass::getByIdShop($id_shop);
-
             if (!$priceandorder) {
                 $this->createExamplePriceandorder($id_shop);
             }
-
             foreach ($this->fields_form[0]['form']['input'] as $input) {
                 $helper->fields_value[$input['name']] = $priceandorder->{$input['name']};
             }
-
             $this->_html .= $helper->generateForm($this->fields_form);
             return $this->_html;
         }
     }
-
     public function postProcess()
     {
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
@@ -662,21 +614,17 @@ class Priceandorder extends Module
         } else {
             $errors = '';
             $id_shop = (int) $this->context->shop->id;
-
             if (Tools::isSubmit('submitUpdatePriceandorder')) {
                 $id_shop = (int) $this->context->shop->id;
                 $priceandorder = PriceandorderClass::getByIdShop($id_shop);
                 $priceandorder->copyFromPost();
                 $priceandorder->update();
-
                 $this->_html .= $errors == '' ? $this->displayConfirmation($this->l('Settings updated successfully')) : $errors;
             }
         }
     }
-
     private function _displayForm()
     {
-
         if (Shop::isFeatureActive()) {
             $idShop = Shop::getContextShopID(true);
             $idShopGroup = Shop::getContextShopGroupID(true);
@@ -706,10 +654,12 @@ class Priceandorder extends Module
                 'captcha' => Configuration::get('priceandorder_captcha'),
             ));
         }
-
         return $this->display(__FILE__, 'views/templates/admin/form.tpl');
     }
-
+    public function hookDisplayHeader($params)
+    {
+        return $this->hookHeader($params);
+    }
     public function hookHeader($params)
     {
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
@@ -723,7 +673,6 @@ class Priceandorder extends Module
             $id_shop = (int) $this->context->shop->id;
             $priceandorder = PriceandorderClass::getByIdShop($id_shop);
             $priceandorder = new PriceandorderClass((int) $priceandorder->id, $this->context->language->id);
-
             $this->smarty->assign(array(
                 'priceandorder' => $priceandorder,
                 'default_lang' => (int) $this->context->language->id,
@@ -732,12 +681,10 @@ class Priceandorder extends Module
             return $this->display(__FILE__, 'views/templates/front/priceandorder_header.tpl');
         }
     }
-
     public function hookRightColumn($params)
     {
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
             global $smarty, $cookie;
-
             if (Tools::isSubmit('submit2')) {
                 $configPath = '../../config/config.inc.php';
                 $email = Tools::getValue('email');
@@ -752,22 +699,16 @@ class Priceandorder extends Module
                 $urgency = Tools::getValue('urgency');
                 $splash_address = Tools::getValue('splash_address');
                 $shop_logo = Tools::getValue('shop_logo');
-
                 if (($code > 20) || !(is_numeric($code))) {
                     $this->_html .= '<a href="javascript:javascript:history.go(-1)">' . $this->displayError($this->l('You are not human, please go back and try once more.')) . '</a>';
-
                     return $this->_html;
                 }
-
                 global $cookie;
                 global $smarty;
-
                 $subject = $this->l('Price and Order E-mail');
                 $subject_owner = $this->l('Quote Request Received');
-
                 $template = 'priceandorder';
                 $template_owner = 'priceandorder_owner';
-
                 if (Shop::isFeatureActive()) {
                     $idShop = Shop::getContextShopID(true);
                     $idShopGroup = Shop::getContextShopGroupID(true);
@@ -777,7 +718,6 @@ class Priceandorder extends Module
                     $shop_name = Configuration::get('PS_SHOP_NAME');
                     $shop_email = Configuration::get('PS_SHOP_EMAIL');
                 }
-
                 $template_vars = array(
                     '{shop_url}' => Tools::getShopDomain(true),
                     '{product}' => $name,
@@ -792,7 +732,6 @@ class Priceandorder extends Module
                     '{shop_name}' => $shop_name,
                     '{shop_logo}' => $shop_logo,
                     '{owner_email}' => $shop_email);
-
                 if ((Mail::Send($language, $template, $shop_name, $template_vars, $email, null, null, null, null, null, dirname(__FILE__) . '/mails14/')) and (Mail::Send($language, $template_owner, $shop_name, $template_vars, explode(",", $webMaster), null, null, null, null, null, dirname(__FILE__) . '/mails14/'))) {
                     $smarty->assign('confirmation3', 1);
                 } else {
@@ -810,7 +749,6 @@ class Priceandorder extends Module
                 'base_dir' => Context::getContext()->shop->getBaseURL(true),
                 'img_ps_dir' => _PS_CORE_IMG_DIR_,
             ));
-
             if (Tools::isSubmit('submit1')) {
                 $configPath = '../../config/config.inc.php';
                 $priceandorder_contactaddress = Tools::getValue('priceandorder_contactaddress');
@@ -830,19 +768,14 @@ class Priceandorder extends Module
                 $urgency = Tools::getValue('urgency');
                 $shop_logo = Tools::getValue('shop_logo');
                 $errors = array();
-
                 if (($code > 20) || !(is_numeric($code))) {
                     $this->_html .= '<a href="javascript:javascript:history.go(-1)">' . $this->displayError($this->l('You are not human, please go back and try once more.')) . '</a>';
-
                     return $this->_html;
                 }
-
                 $subject = $this->l('Price and Order E-mail');
                 $subject_owner = $this->l('Quote Request Received');
-
                 $template = 'priceandorder';
                 $template_owner = 'priceandorder_owner';
-
                 if (Shop::isFeatureActive()) {
                     $idShop = Shop::getContextShopID(true);
                     $idShopGroup = Shop::getContextShopGroupID(true);
@@ -852,7 +785,6 @@ class Priceandorder extends Module
                     $shop_name = Configuration::get('PS_SHOP_NAME');
                     $shop_email = Configuration::get('PS_SHOP_EMAIL');
                 }
-
                 $template_vars = array(
                     '{priceandorder_contactaddress}' => $priceandorder_contactaddress,
                     '{priceandorder_contacttown}' => $priceandorder_contacttown,
@@ -873,7 +805,6 @@ class Priceandorder extends Module
                     '{shop_name}' => $shop_name,
                     '{shop_logo}' => $shop_logo,
                     '{owner_email}' => $shop_email);
-
                 if ((Mail::Send($language, $template, $shop_name, $template_vars, $email, null, null, null, null, null, dirname(__FILE__) . '/mails/')) and (Mail::Send($language, $template_owner, $shop_name, $template_vars, explode(",", $webMaster), null, null, null, null, null, dirname(__FILE__) . '/mails/'))) {
                     $this->smarty->assign('confirmation1', 1);
                 } else {
@@ -888,7 +819,14 @@ class Priceandorder extends Module
             }
         }
     }
-
+    public function hookDisplayLeftColumn($params)
+    {
+        return $this->hookRightColumn($params);
+    }
+    public function hookDisplayRightColumn($params)
+    {
+        return $this->hookRightColumn($params);
+    }
     public function hookLeftColumn($params)
     {
         return $this->hookRightColumn($params);

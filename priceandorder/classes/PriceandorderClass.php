@@ -4,10 +4,10 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: A Price Quoting Module for Demanded Orders
- *    Version: 1.9.3
+ *    Version: 1.9.4
  *
  * @author    Caglar Guler <info@megventure.com>
- * @copyright 2007-2020 MEG Venture
+ * @copyright 2007-2023 MEG Venture
  * @license   Copyright 2012, Caglar Guler (info@megventure.com)
  *    This program is not a free software: you can't redistribute it and/or modify
  *    it. All rights reserved.
