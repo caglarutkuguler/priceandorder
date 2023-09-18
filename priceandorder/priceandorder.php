@@ -4,7 +4,7 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: A Price Quoting Module for Demanded Orders
- *    Version: 1.9.4
+ *    Version: 1.9.5
  *
  * @author    Caglar Guler <info@megventure.com>
  * @copyright 2007-2023 MEG Venture
@@ -24,7 +24,7 @@ if (!defined('_PS_VERSION_')) {
 class Priceandorder extends Module
 {
     private $_html = '';
-    private $_postErrors = array();
+    private $_postErrors = [];
     public $recmail;
     public $infolink;
     public $destination;
@@ -37,7 +37,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '1.9.4';
+        $this->version = '1.9.5';
         $this->bootstrap = true;
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
