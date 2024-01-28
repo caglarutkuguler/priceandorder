@@ -93,9 +93,9 @@ class Priceandorder extends Module
             Shop::setContext(Shop::CONTEXT_ALL);
         }
         if (version_compare(_PS_VERSION_, '1.5.0.0 ', '<')) {
-            if (!parent::install() 
-            || !$this->registerHook('rightColumn') 
-            || !$this->registerHook('header')) {
+            if (!parent::install()
+                || !$this->registerHook('rightColumn')
+                || !$this->registerHook('header')) {
                 return false;
             }
             if (!Db::getInstance()->Execute('
@@ -140,9 +140,9 @@ class Priceandorder extends Module
             }
             return true;
         } else {
-            if (!parent::install() 
+            if (!parent::install()
                 || !$this->registerHook('displayHeader')
-                || !$this->registerHook('leftColumn')) {
+                || !$this->registerHook('displayLeftColumn')) {
                 return false;
             }
             $res = Db::getInstance()->execute('
@@ -824,10 +824,6 @@ class Priceandorder extends Module
         return $this->hookRightColumn($params);
     }
     public function hookDisplayRightColumn($params)
-    {
-        return $this->hookRightColumn($params);
-    }
-    public function hookLeftColumn($params)
     {
         return $this->hookRightColumn($params);
     }
