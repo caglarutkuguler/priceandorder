@@ -29,7 +29,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
             $response = $this->handleSubmission();
         } catch (Throwable $e) {
             PrestaShopLogger::addLog('Priceandorder: quote submission crashed: ' . $e->getMessage(), 3);
-            $response = ['success' => false, 'message' => $this->trans('We could not save your request. Please try again.')];
+            $response = ['success' => false, 'message' => $this->poText('We could not save your request. Please try again.')];
         }
         $stray = ob_get_clean();
         if ($stray !== '') {
@@ -65,7 +65,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
     private function handleSubmission()
     {
         if (!Tools::isSubmit('priceandorder_submit')) {
-            return ['success' => false, 'message' => $this->trans('Invalid request.')];
+            return ['success' => false, 'message' => $this->poText('Invalid request.')];
         }
 
         // Honeypot: real visitors never see or fill this field in.
@@ -74,14 +74,14 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         }
 
         if (!Priceandorder::checkFormToken(Tools::getValue('priceandorder_token'))) {
-            return ['success' => false, 'message' => $this->trans('Your session has expired. Please reload the page and try again.')];
+            return ['success' => false, 'message' => $this->poText('Your session has expired. Please reload the page and try again.')];
         }
 
         $ip = (string) Tools::getRemoteAddr();
         if ($ip !== '') {
             $since = date('Y-m-d H:i:s', strtotime('-1 hour'));
             if (PriceandorderQuoteClass::countRecentByIp($ip, $since) >= Priceandorder::RATE_LIMIT_PER_HOUR) {
-                return ['success' => false, 'message' => $this->trans('Too many requests from your connection. Please try again later.')];
+                return ['success' => false, 'message' => $this->poText('Too many requests from your connection. Please try again later.')];
             }
         }
 
@@ -90,12 +90,12 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $module = $this->module;
         $settings = $module->getSettingsForShop($idShop);
         if (!$settings) {
-            return ['success' => false, 'message' => $this->trans('We could not save your request. Please try again.')];
+            return ['success' => false, 'message' => $this->poText('We could not save your request. Please try again.')];
         }
 
         $product = strip_tags(trim((string) Tools::getValue('product')));
         if ($product === '') {
-            return ['success' => false, 'message' => $this->trans('Please describe the product you are looking for.')];
+            return ['success' => false, 'message' => $this->poText('Please describe the product you are looking for.')];
         }
         if (Tools::strlen($product) > 2000) {
             $product = Tools::substr($product, 0, 2000);
@@ -113,15 +113,15 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         }
 
         if (!Validate::isEmail($email)) {
-            return ['success' => false, 'message' => $this->trans('Please enter a valid e-mail address.')];
+            return ['success' => false, 'message' => $this->poText('Please enter a valid e-mail address.')];
         }
 
         if (!$isLogged && $settings->show_name && $customerName === '') {
-            return ['success' => false, 'message' => $this->trans('Please enter your name.')];
+            return ['success' => false, 'message' => $this->poText('Please enter your name.')];
         }
 
         if (!Tools::getValue('priceandorder_consent')) {
-            return ['success' => false, 'message' => $this->trans('Please accept the Terms & Privacy Policy to continue.')];
+            return ['success' => false, 'message' => $this->poText('Please accept the Terms & Privacy Policy to continue.')];
         }
 
         $quote = new PriceandorderQuoteClass();
@@ -142,7 +142,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $quote->status = PriceandorderQuoteClass::STATUS_NEW;
 
         if (!$quote->add()) {
-            return ['success' => false, 'message' => $this->trans('We could not save your request. Please try again.')];
+            return ['success' => false, 'message' => $this->poText('We could not save your request. Please try again.')];
         }
 
         // The request is already safely saved at this point (visible in the
@@ -165,10 +165,10 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
 
     private function getThankYouMessage()
     {
-        return $this->trans('Thank you! Your quote request has been sent. We will get back to you shortly.');
+        return $this->poText('Thank you! Your quote request has been sent. We will get back to you shortly.');
     }
 
-    private function trans($string)
+    private function poText($string)
     {
         return $this->module->l($string, 'quote');
     }
@@ -183,14 +183,14 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $shopUrl = rtrim($this->context->shop->getBaseURL(true), '/');
         $shopLogo = $logoFile ? ($shopUrl . '/img/' . $logoFile) : '';
 
-        $yes = $this->trans('Yes');
-        $no = $this->trans('No');
+        $yes = $this->poText('Yes');
+        $no = $this->poText('No');
 
         $vars = [
             '{shop_name}' => $shopName,
             '{shop_url}' => $shopUrl,
             '{shop_logo}' => $shopLogo,
-            '{customer_name}' => $quote->customer_name !== '' ? $quote->customer_name : $this->trans('Guest'),
+            '{customer_name}' => $quote->customer_name !== '' ? $quote->customer_name : $this->poText('Guest'),
             '{email}' => $quote->email,
             '{phone}' => $quote->phone,
             '{address}' => $quote->address,
@@ -208,7 +208,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $customerSent = @Mail::Send(
             $idLang,
             'quote_customer',
-            $this->trans('Your quote request'),
+            $this->poText('Your quote request'),
             $vars,
             $quote->email,
             null,
@@ -227,7 +227,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
             $adminSent = @Mail::Send(
                 $idLang,
                 'quote_admin',
-                $this->trans('New quote request received'),
+                $this->poText('New quote request received'),
                 $vars,
                 $recipients,
                 null,
