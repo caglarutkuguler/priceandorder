@@ -19,7 +19,22 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
 
     public function initContent()
     {
-        $response = $this->handleSubmission();
+        // Guard against any stray PHP warning/notice output (e.g. from a
+        // misconfigured mail setup) corrupting the JSON response body, which
+        // would otherwise surface to the visitor as a generic JS error with
+        // no clue as to the real cause. Everything printed here is discarded;
+        // real problems are logged instead via PrestaShopLogger.
+        ob_start();
+        try {
+            $response = $this->handleSubmission();
+        } catch (Throwable $e) {
+            PrestaShopLogger::addLog('Priceandorder: quote submission crashed: ' . $e->getMessage(), 3);
+            $response = ['success' => false, 'message' => $this->trans('We could not save your request. Please try again.')];
+        }
+        $stray = ob_get_clean();
+        if ($stray !== '') {
+            PrestaShopLogger::addLog('Priceandorder: unexpected output during quote submission: ' . substr($stray, 0, 500), 2);
+        }
 
         if (Tools::getValue('ajax')) {
             header('Content-Type: application/json; charset=utf-8');
@@ -74,6 +89,9 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         /** @var Priceandorder $module */
         $module = $this->module;
         $settings = $module->getSettingsForShop($idShop);
+        if (!$settings) {
+            return ['success' => false, 'message' => $this->trans('We could not save your request. Please try again.')];
+        }
 
         $product = strip_tags(trim((string) Tools::getValue('product')));
         if ($product === '') {
@@ -127,7 +145,20 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
             return ['success' => false, 'message' => $this->trans('We could not save your request. Please try again.')];
         }
 
-        $this->sendNotificationMails($settings, $quote);
+        // The request is already safely saved at this point (visible in the
+        // Quote Requests tab regardless). A broken mail server on the host
+        // must not turn a successful save into a customer-facing error.
+        try {
+            $this->sendNotificationMails($settings, $quote);
+        } catch (Throwable $e) {
+            PrestaShopLogger::addLog(
+                'Priceandorder: sending notification e-mails crashed for quote #' . (int) $quote->id . ': ' . $e->getMessage(),
+                3,
+                null,
+                'PriceandorderQuote',
+                (int) $quote->id
+            );
+        }
 
         return ['success' => true, 'message' => $this->getThankYouMessage()];
     }
