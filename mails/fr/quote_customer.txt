@@ -1,0 +1,11 @@
+Bonjour {customer_name},
+
+Merci pour votre demande de devis chez {shop_name}. Nous l'avons bien reçue et nous vous répondrons avec un prix dans les plus brefs délais.
+
+Ce que vous avez demandé :
+{product}
+
+Quantité : {quantity}
+Destination d'expédition : {destination}
+
+{shop_url}

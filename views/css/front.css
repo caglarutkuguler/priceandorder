@@ -1,0 +1,264 @@
+/**
+ * @author    MEG Venture <info@megventure.com>
+ * @copyright 2007-2026 MEG Venture
+ * @license   All rights reserved
+ */
+
+.po-column,
+.po-modal-dialog {
+    --po-accent: #da0f00;
+    --po-text: #2b2b2b;
+    --po-border: #d9dade;
+    --po-bg: #fff;
+    --po-radius: 6px;
+}
+
+/* Sidebar block */
+.po-column {
+    background: var(--po-bg);
+    color: var(--po-text);
+    border-radius: var(--po-radius);
+    box-shadow: 0 2px 11px rgba(0, 0, 0, .1);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: .875rem;
+}
+
+.po-column-title {
+    margin: 0 0 .75rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Shared form styles (used inside both the sidebar block and the modal) */
+.po-alert {
+    padding: .6rem .8rem;
+    border-radius: var(--po-radius);
+    margin-bottom: .75rem;
+    font-size: .85rem;
+}
+
+.po-alert--success {
+    background: #e6f6ea;
+    color: #1c7a34;
+    border: 1px solid #b9e4c4;
+}
+
+.po-alert--error {
+    background: #fdecec;
+    color: #b30000;
+    border: 1px solid #f4c2c2;
+}
+
+.po-intro {
+    margin: 0 0 .9rem;
+    font-size: .875rem;
+}
+
+.po-group {
+    margin-bottom: .8rem;
+}
+
+.po-group label:not(.po-checkbox):not(.po-radio) {
+    display: block;
+    margin-bottom: .3rem;
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+.po-fields input[type="text"],
+.po-fields input[type="email"],
+.po-fields input[type="tel"],
+.po-fields textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: .5rem .6rem;
+    border: 1px solid var(--po-border);
+    border-radius: var(--po-radius);
+    font-size: .875rem;
+    font-family: inherit;
+}
+
+.po-fields textarea {
+    resize: vertical;
+}
+
+.po-required {
+    color: var(--po-accent);
+}
+
+.po-required-note {
+    font-size: .75rem;
+    color: #767676;
+    margin: .25rem 0 .9rem;
+}
+
+.po-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .25rem .75rem;
+}
+
+.po-inline-label {
+    font-weight: 600;
+    font-size: .8rem;
+    width: 100%;
+}
+
+.po-radio,
+.po-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-weight: 400;
+    font-size: .85rem;
+    cursor: pointer;
+}
+
+.po-radio input,
+.po-checkbox input {
+    margin: 0;
+}
+
+.po-submit {
+    display: inline-block;
+    width: 100%;
+    padding: .65rem 1rem;
+    background: var(--po-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--po-radius);
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s ease;
+}
+
+.po-submit:hover {
+    opacity: .9;
+}
+
+.po-submit:disabled {
+    opacity: .6;
+    cursor: default;
+}
+
+.po-promo {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--po-border);
+    text-align: center;
+}
+
+.po-promo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--po-radius);
+    margin-bottom: .5rem;
+}
+
+/* Honeypot: kept in the layout (not display:none) so automated fillers still find it. */
+.po-hp {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Floating action button */
+.po-fab {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 1030;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .75rem 1.1rem;
+    background: var(--po-accent, #da0f00);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.po-fab-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+@media (max-width: 480px) {
+    .po-fab-label {
+        display: none;
+    }
+
+    .po-fab {
+        padding: .75rem;
+    }
+}
+
+/* Modal */
+.po-modal[hidden] {
+    display: none;
+}
+
+.po-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.po-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+}
+
+.po-modal-dialog {
+    position: relative;
+    background: var(--po-bg);
+    color: var(--po-text);
+    border-radius: var(--po-radius);
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .3);
+}
+
+.po-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--po-border);
+}
+
+.po-modal-header h4 {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.po-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+}
+
+.po-modal-body {
+    padding: 1.25rem;
+}

@@ -1,0 +1,19 @@
+New quote request received.
+
+Please reply directly to {email} with a price as soon as possible.
+
+Name: {customer_name}
+E-mail: {email}
+Phone: {phone}
+Address: {address}
+Town: {town}
+Quantity: {quantity}
+Shipping destination: {destination}
+Urgent?: {urgent}
+Has PayPal account?: {has_paypal}
+First order?: {first_order}
+
+Product requested:
+{product}
+
+Sent automatically by the Quote Request Pro module on {shop_name} ({shop_url})

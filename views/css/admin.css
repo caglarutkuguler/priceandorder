@@ -1,0 +1,325 @@
+/**
+ * @author    MEG Venture <info@megventure.com>
+ * @copyright 2007-2026 MEG Venture
+ * @license   All rights reserved
+ */
+
+#priceandorder-admin {
+    --po-a-accent: #da0f00;
+    --po-a-border: #dadfe6;
+    --po-a-muted: #6c757d;
+}
+
+#priceandorder-admin .panel-heading img {
+    vertical-align: middle;
+    margin-right: .4rem;
+}
+
+#priceandorder-admin .po-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--po-a-border);
+    margin: 0 0 1.25rem;
+}
+
+#priceandorder-admin .po-tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: .75rem 1rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--po-a-muted);
+    cursor: pointer;
+}
+
+#priceandorder-admin .po-tab--active {
+    color: var(--po-a-accent);
+    border-bottom-color: var(--po-a-accent);
+}
+
+#priceandorder-admin .po-fieldset {
+    border: 1px solid var(--po-a-border);
+    border-radius: 4px;
+    padding: 1rem 1.25rem 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+#priceandorder-admin .po-fieldset legend {
+    font-size: .95rem;
+    font-weight: 700;
+    padding: 0 .5rem;
+    width: auto;
+}
+
+#priceandorder-admin .po-fieldset-desc,
+#priceandorder-admin .po-help {
+    color: var(--po-a-muted);
+    font-size: .8rem;
+    margin: .25rem 0 .75rem;
+}
+
+#priceandorder-admin .po-toggle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: .6rem .5rem;
+}
+
+#priceandorder-admin .po-switch-row {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .85rem;
+    cursor: pointer;
+}
+
+#priceandorder-admin .po-switch-row input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+#priceandorder-admin .po-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 999px;
+    flex: none;
+    transition: background .15s ease;
+}
+
+#priceandorder-admin .po-switch::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .15s ease;
+}
+
+#priceandorder-admin input:checked + .po-switch {
+    background: var(--po-a-accent);
+}
+
+#priceandorder-admin input:checked + .po-switch::before {
+    transform: translateX(16px);
+}
+
+#priceandorder-admin input:focus-visible + .po-switch {
+    outline: 2px solid var(--po-a-accent);
+    outline-offset: 2px;
+}
+
+#priceandorder-admin .po-group {
+    margin-bottom: 1rem;
+}
+
+#priceandorder-admin .po-group > label {
+    display: block;
+    font-weight: 600;
+    font-size: .85rem;
+    margin-bottom: .3rem;
+}
+
+#priceandorder-admin .po-group input[type="text"],
+#priceandorder-admin .po-group input[type="file"] {
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+    padding: .45rem .6rem;
+    border: 1px solid var(--po-a-border);
+    border-radius: 4px;
+    font-size: .85rem;
+}
+
+#priceandorder-admin .po-required {
+    color: var(--po-a-accent);
+}
+
+#priceandorder-admin .po-lang-switch-wrap select {
+    padding: .35rem .5rem;
+}
+
+#priceandorder-admin .po-lang-field[hidden] {
+    display: none;
+}
+
+#priceandorder-admin .po-promo-preview {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: .6rem;
+}
+
+#priceandorder-admin .po-promo-preview img {
+    max-width: 160px;
+    max-height: 110px;
+    border: 1px solid var(--po-a-border);
+    border-radius: 4px;
+}
+
+#priceandorder-admin .po-checkbox {
+    font-size: .8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+}
+
+#priceandorder-admin .po-form-actions {
+    text-align: right;
+}
+
+#priceandorder-admin .po-btn {
+    display: inline-block;
+    padding: .55rem 1.25rem;
+    border-radius: 4px;
+    border: none;
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#priceandorder-admin .po-btn--primary {
+    background: var(--po-a-accent);
+    color: #fff;
+}
+
+/* Quote requests list */
+#priceandorder-admin .po-filters {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#priceandorder-admin .po-filter {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--po-a-muted);
+    text-decoration: none;
+    padding-bottom: .2rem;
+    border-bottom: 2px solid transparent;
+}
+
+#priceandorder-admin .po-filter--active {
+    color: var(--po-a-accent);
+    border-bottom-color: var(--po-a-accent);
+}
+
+#priceandorder-admin .po-total {
+    margin-left: auto;
+    font-size: .8rem;
+    color: var(--po-a-muted);
+}
+
+#priceandorder-admin .po-table-wrap {
+    overflow-x: auto;
+}
+
+#priceandorder-admin .po-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .82rem;
+}
+
+#priceandorder-admin .po-table th,
+#priceandorder-admin .po-table td {
+    padding: .55rem .6rem;
+    border-bottom: 1px solid var(--po-a-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+#priceandorder-admin .po-cell-product {
+    max-width: 260px;
+}
+
+#priceandorder-admin .po-badge {
+    display: inline-block;
+    padding: .15rem .55rem;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+#priceandorder-admin .po-badge--new {
+    background: #fdecec;
+    color: #b30000;
+}
+
+#priceandorder-admin .po-badge--handled {
+    background: #e6f6ea;
+    color: #1c7a34;
+}
+
+#priceandorder-admin .po-cell-actions a {
+    white-space: nowrap;
+}
+
+#priceandorder-admin .po-empty {
+    color: var(--po-a-muted);
+    font-size: .85rem;
+}
+
+#priceandorder-admin .po-pagination {
+    margin-top: 1rem;
+    display: flex;
+    gap: .35rem;
+}
+
+#priceandorder-admin .po-page {
+    padding: .3rem .65rem;
+    border: 1px solid var(--po-a-border);
+    border-radius: 4px;
+    font-size: .8rem;
+    text-decoration: none;
+}
+
+#priceandorder-admin .po-page--active {
+    background: var(--po-a-accent);
+    color: #fff;
+    border-color: var(--po-a-accent);
+}
+
+/* Tutorial */
+#priceandorder-admin .po-tutorial h3 {
+    font-size: .95rem;
+    margin: 1.25rem 0 .5rem;
+}
+
+#priceandorder-admin .po-tutorial h3:first-child {
+    margin-top: 0;
+}
+
+#priceandorder-admin .po-steps,
+#priceandorder-admin .po-list {
+    font-size: .85rem;
+    padding-left: 1.25rem;
+}
+
+#priceandorder-admin .po-steps li,
+#priceandorder-admin .po-list li {
+    margin-bottom: .4rem;
+}
+
+#priceandorder-admin .po-faq dt {
+    font-weight: 700;
+    font-size: .85rem;
+    margin-top: .75rem;
+}
+
+#priceandorder-admin .po-faq dd {
+    margin: .25rem 0 0;
+    font-size: .82rem;
+    color: var(--po-a-muted);
+}
+
+#priceandorder-admin .po-support {
+    margin-top: 1.5rem;
+    font-size: .85rem;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Nueva solicitud de presupuesto en {shop_name}</title>
+</head>
+<body style="margin:0;padding:0;background:#f4f4f4;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:24px 0;">
+<tr><td align="center">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:6px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#333333;">
+<tr><td style="padding:24px 24px 0;">
+<a href="{shop_url}"><img src="{shop_logo}" alt="{shop_name}" style="max-height:48px;border:none;"></a>
+</td></tr>
+<tr><td style="padding:20px 24px;">
+<h2 style="margin:0 0 12px;font-size:18px;color:#222222;">Nueva solicitud de presupuesto</h2>
+<p style="margin:0 0 16px;font-size:14px;">Responde directamente a <a href="mailto:{email}">{email}</a> con un precio lo antes posible.</p>
+<table role="presentation" width="100%" cellpadding="6" cellspacing="0" style="font-size:13px;border-collapse:collapse;">
+<tr><td style="width:160px;color:#777777;">Nombre</td><td>{customer_name}</td></tr>
+<tr><td style="color:#777777;">Correo electrónico</td><td><a href="mailto:{email}">{email}</a></td></tr>
+<tr><td style="color:#777777;">Teléfono</td><td>{phone}</td></tr>
+<tr><td style="color:#777777;">Dirección</td><td>{address}</td></tr>
+<tr><td style="color:#777777;">Ciudad</td><td>{town}</td></tr>
+<tr><td style="color:#777777;">Cantidad</td><td>{quantity}</td></tr>
+<tr><td style="color:#777777;">Destino de envío</td><td>{destination}</td></tr>
+<tr><td style="color:#777777;">¿Urgente?</td><td>{urgent}</td></tr>
+<tr><td style="color:#777777;">¿Tiene cuenta PayPal?</td><td>{has_paypal}</td></tr>
+<tr><td style="color:#777777;">¿Es su primer pedido?</td><td>{first_order}</td></tr>
+</table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f7f9;border-radius:4px;margin-top:12px;">
+<tr><td style="padding:14px 16px;font-size:13px;line-height:1.6;">
+<strong>Producto solicitado:</strong><br>
+<div style="white-space:pre-wrap;">{product}</div>
+</td></tr>
+</table>
+</td></tr>
+<tr><td style="padding:16px 24px;border-top:1px solid #eeeeee;font-size:11px;color:#999999;text-align:center;">
+Enviado automáticamente por el módulo Quote Request Pro en <a href="{shop_url}" style="color:#da0f00;text-decoration:none;">{shop_name}</a>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>

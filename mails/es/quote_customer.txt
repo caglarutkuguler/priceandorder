@@ -1,0 +1,11 @@
+Hola {customer_name},
+
+Gracias por tu solicitud de presupuesto en {shop_name}. La hemos recibido y te responderemos con un precio lo antes posible.
+
+Lo que has solicitado:
+{product}
+
+Cantidad: {quantity}
+Destino de envío: {destination}
+
+{shop_url}

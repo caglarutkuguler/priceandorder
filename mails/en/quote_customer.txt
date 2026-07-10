@@ -1,0 +1,11 @@
+Hi {customer_name},
+
+Thanks for your quote request on {shop_name}. We received it and will get back to you with a price as soon as possible.
+
+What you asked for:
+{product}
+
+Quantity: {quantity}
+Shipping destination: {destination}
+
+{shop_url}

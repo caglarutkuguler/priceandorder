@@ -1,0 +1,11 @@
+Merhaba {customer_name},
+
+{shop_name} üzerinden gönderdiğiniz fiyat teklif talebiniz için teşekkür ederiz. Talebiniz tarafımıza ulaştı, en kısa sürede size fiyat bilgisi ile geri döneceğiz.
+
+Talep ettiğiniz ürün:
+{product}
+
+Adet: {quantity}
+Sevkiyat noktası: {destination}
+
+{shop_url}

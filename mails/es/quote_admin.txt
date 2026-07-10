@@ -1,0 +1,19 @@
+Nueva solicitud de presupuesto recibida.
+
+Responde directamente a {email} con un precio lo antes posible.
+
+Nombre: {customer_name}
+Correo electrónico: {email}
+Teléfono: {phone}
+Dirección: {address}
+Ciudad: {town}
+Cantidad: {quantity}
+Destino de envío: {destination}
+¿Urgente?: {urgent}
+¿Tiene cuenta PayPal?: {has_paypal}
+¿Es su primer pedido?: {first_order}
+
+Producto solicitado:
+{product}
+
+Enviado automáticamente por el módulo Quote Request Pro en {shop_name} ({shop_url})

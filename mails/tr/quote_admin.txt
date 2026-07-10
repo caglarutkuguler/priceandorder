@@ -1,0 +1,19 @@
+Yeni bir fiyat teklif talebi alındı.
+
+Lütfen en kısa sürede fiyat bilgisi ile birlikte {email} adresine doğrudan yanıt verin.
+
+Ad Soyad: {customer_name}
+E-posta: {email}
+Telefon: {phone}
+Adres: {address}
+Şehir: {town}
+Adet: {quantity}
+Sevkiyat noktası: {destination}
+Acil mi?: {urgent}
+PayPal hesabı var mı?: {has_paypal}
+İlk siparişi mi?: {first_order}
+
+Talep edilen ürün:
+{product}
+
+Bu e-posta {shop_name} ({shop_url}) üzerindeki Quote Request Pro modülü tarafından otomatik olarak gönderilmiştir.

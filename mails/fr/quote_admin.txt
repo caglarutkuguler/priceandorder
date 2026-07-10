@@ -1,0 +1,19 @@
+Nouvelle demande de devis reçue.
+
+Merci de répondre directement à {email} avec un prix dans les plus brefs délais.
+
+Nom : {customer_name}
+Adresse e-mail : {email}
+Téléphone : {phone}
+Adresse : {address}
+Ville : {town}
+Quantité : {quantity}
+Destination d'expédition : {destination}
+Urgent ? : {urgent}
+A un compte PayPal ? : {has_paypal}
+Première commande ? : {first_order}
+
+Produit demandé :
+{product}
+
+Envoyé automatiquement par le module Quote Request Pro sur {shop_name} ({shop_url})

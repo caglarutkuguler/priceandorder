@@ -1,0 +1,2 @@
+views/img/uploads/*
+!views/img/uploads/index.php
