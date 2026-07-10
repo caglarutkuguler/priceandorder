@@ -87,11 +87,11 @@ that your current theme actually renders that hook (some themes remove the
 left/right column entirely).
 
 **I don't see the Dashboard notification card even though I have new requests.**
-Check Design > Positions for the `Dashboard (displayDashboardTop)` hook and
-make sure `priceandorder` is attached and enabled there too — the same
-Positions page controls the storefront form and the Dashboard card
-independently. The card only appears when there is at least one request
-still marked "New" in the Quote Requests tab.
+Check Design > Positions for the `dashboardZoneOne` hook and make sure
+`priceandorder` is attached and enabled there too — it's controlled
+separately from the storefront form's hooks. The card only appears on the
+actual Dashboard page, and only when at least one request is still marked
+"New" in the Quote Requests tab.
 
 **Quote request e-mails aren't arriving.**
 Double-check the recipient address in Settings, check your spam folder, and

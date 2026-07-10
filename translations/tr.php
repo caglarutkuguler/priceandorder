@@ -68,7 +68,7 @@ $_MODULE['<{priceandorder}prestashop>_tutorial_13dabddb6263b6457635e4c5d2035082'
 $_MODULE['<{priceandorder}prestashop>_tutorial_738cfeba525f1715b35cdbae92e826d9'] = 'Promosyon görselim gerilmiş görünüyor veya reddediliyor.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_a7821d5fcb146c5ad0b90884e504d314'] = 'Yüklemeler 4 MB\'a kadar JPG, PNG, GIF veya WEBP dosyalarıyla sınırlıdır ve oranları korunarak otomatik olarak 400x280 px içine sığacak şekilde yeniden boyutlandırılır, böylece dosyanın kendisi asla bozulmaz.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_6d08bb064fa0dc50df631711d8f9a10a'] = 'Pano bildirim kartı görünmüyor.';
-$_MODULE['<{priceandorder}prestashop>_tutorial_a7f706f721fdc800fcae17d397c53f1f'] = 'Tasarım > Konumlar\'da Pano kancasını kontrol edin ve priceandorder\'ın orada da bağlı ve etkin olduğundan emin olun &mdash; bu, mağaza formundan ayrı olarak kontrol edilir. Kart yalnızca en az bir talep hâlâ \"Yeni\" olarak işaretliyken görünür.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Tasarım > Konumlar\'da dashboardZoneOne kancasını kontrol edin ve priceandorder\'ın orada da bağlı ve etkin olduğundan emin olun &mdash; bu, mağaza formundan ayrı olarak kontrol edilir ve yalnızca gerçek Pano sayfasında görünür. Kart yalnızca en az bir talep hâlâ \"Yeni\" olarak işaretliyken gösterilir.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_775956a2316b82459c84f10d788864d5'] = 'Daha fazla yardıma mı ihtiyacınız var? İletişim:';
 $_MODULE['<{priceandorder}prestashop>column_87e7af63c3cd88c47cb5df286692df1f'] = 'Teklif iste';
 $_MODULE['<{priceandorder}prestashop>configure_e3da4be5937c231d4f5bf268f2fde3c4'] = 'Quote Request Pro';

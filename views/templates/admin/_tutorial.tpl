@@ -39,7 +39,7 @@
         <dd>{l s='Uploads are limited to JPG, PNG, GIF or WEBP files up to 4 MB and are automatically resized to fit within 400x280 px while keeping their proportions, so the file itself is never distorted.' mod='priceandorder'}</dd>
 
         <dt>{l s='The Dashboard notification card is not showing up.' mod='priceandorder'}</dt>
-        <dd>{l s='Check Design > Positions for the Dashboard hook and make sure priceandorder is attached and enabled there as well &mdash; it is controlled separately from the storefront form. The card only appears while at least one request is still marked "New".' mod='priceandorder'}</dd>
+        <dd>{l s='Check Design > Positions for the dashboardZoneOne hook and make sure priceandorder is attached and enabled there as well &mdash; it is controlled separately from the storefront form, and only appears on the actual Dashboard page. The card only shows while at least one request is still marked "New".' mod='priceandorder'}</dd>
     </dl>
 
     <p class="po-support">

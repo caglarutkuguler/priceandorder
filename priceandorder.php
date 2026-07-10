@@ -26,7 +26,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.0.1';
+        $this->version = '2.0.2';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -67,7 +67,7 @@ class Priceandorder extends Module
             || !$this->registerHook('displayLeftColumn')
             || !$this->registerHook('displayRightColumn')
             || !$this->registerHook('displayFooter')
-            || !$this->registerHook('displayDashboardTop')
+            || !$this->registerHook('dashboardZoneOne')
             || !$this->installDb()
         ) {
             return false;
@@ -348,8 +348,12 @@ class Priceandorder extends Module
      * Notification card on the back office Dashboard so new quote requests
      * don't go unnoticed between visits to the module's own config page.
      * Silent (no output) whenever there is nothing new to report.
+     *
+     * dashboardZoneOne (not displayDashboardTop) is used deliberately: the
+     * latter turned out to fire on most admin pages that show a KPI row
+     * (e.g. "Performance"), not just the actual Dashboard.
      */
-    public function hookDisplayDashboardTop($params)
+    public function hookDashboardZoneOne($params)
     {
         $shopIds = Shop::getContextListShopID();
         if (!$shopIds) {
