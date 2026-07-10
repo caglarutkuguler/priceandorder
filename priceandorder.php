@@ -26,7 +26,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.0.3';
+        $this->version = '2.0.4';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -381,8 +381,50 @@ class Priceandorder extends Module
         return $this->fetch('module:' . $this->name . '/views/templates/admin/dashboard_notification.tpl');
     }
 
+    /**
+     * Self-healing check, run every time the config page loads. PrestaShop's
+     * own "Update" button on the Modules list can fail for reasons outside
+     * this module's control (a core/theme JS issue unrelated to this code —
+     * "Could not perform action upgrade for module undefined" is a core
+     * error, not something a module can catch or fix). Rather than depend on
+     * that button working, re-assert the hooks/schema this version expects
+     * and sync the stored version every time an admin actually opens this
+     * page, so the module converges to the correct state regardless of
+     * whether any upgrade-x.y.z.php file ever got a chance to run.
+     */
+    private function ensureUpToDate()
+    {
+        if (Shop::isFeatureActive()) {
+            Shop::setContext(Shop::CONTEXT_ALL);
+        }
+
+        if ($this->isRegisteredInHook('displayDashboardTop')) {
+            $this->unregisterHook('displayDashboardTop');
+        }
+
+        foreach (['displayHeader', 'displayLeftColumn', 'displayRightColumn', 'displayFooter', 'dashboardZoneOne'] as $hook) {
+            if (!$this->isRegisteredInHook($hook)) {
+                $this->registerHook($hook);
+            }
+        }
+
+        $this->installDb();
+
+        if ((string) $this->database_version !== (string) $this->version) {
+            $db = Db::getInstance();
+            $db->execute(
+                'UPDATE `' . _DB_PREFIX_ . 'module` SET `version` = \''
+                . $db->escape($this->version, false, false)
+                . '\' WHERE `name` = \'' . $db->escape($this->name, false, false) . '\''
+            );
+            $this->database_version = $this->version;
+        }
+    }
+
     public function getContent()
     {
+        $this->ensureUpToDate();
+
         $this->context->controller->addCSS($this->_path . 'views/css/admin.css');
         $this->context->controller->addJS($this->_path . 'views/js/admin.js');
 
