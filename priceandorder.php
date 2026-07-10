@@ -366,8 +366,6 @@ class Priceandorder extends Module
             return '';
         }
 
-        $this->context->controller->addCSS($this->_path . 'views/css/dashboard.css');
-
         $this->context->smarty->assign([
             'po_new_count' => $newCount,
             'po_requests_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
