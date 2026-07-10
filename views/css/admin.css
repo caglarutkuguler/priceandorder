@@ -323,3 +323,116 @@
     margin-top: 1.5rem;
     font-size: .85rem;
 }
+
+/* Quote request detail modal */
+#priceandorder-admin .po-view-modal[hidden] {
+    display: none;
+}
+
+#priceandorder-admin .po-view-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#priceandorder-admin .po-view-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+}
+
+#priceandorder-admin .po-view-dialog {
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .3);
+}
+
+#priceandorder-admin .po-view-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--po-a-border);
+}
+
+#priceandorder-admin .po-view-header h4 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+#priceandorder-admin .po-view-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+}
+
+#priceandorder-admin .po-view-body {
+    padding: 1.1rem 1.25rem 1.25rem;
+}
+
+#priceandorder-admin .po-view-badges {
+    margin-bottom: .75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+}
+
+#priceandorder-admin .po-badge--flag {
+    background: #eef2ff;
+    color: #3949ab;
+}
+
+#priceandorder-admin .po-badge--flag[hidden] {
+    display: none;
+}
+
+#priceandorder-admin .po-view-row {
+    display: flex;
+    gap: .5rem;
+    padding: .35rem 0;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: .85rem;
+}
+
+#priceandorder-admin .po-view-row[hidden] {
+    display: none;
+}
+
+#priceandorder-admin .po-view-label {
+    flex: 0 0 40%;
+    color: var(--po-a-muted);
+}
+
+#priceandorder-admin .po-view-value {
+    flex: 1 1 auto;
+    word-break: break-word;
+}
+
+#priceandorder-admin .po-view-product {
+    margin-top: .9rem;
+}
+
+#priceandorder-admin .po-view-product .po-view-label {
+    display: block;
+    margin-bottom: .3rem;
+}
+
+#priceandorder-admin .po-view-product-text {
+    font-size: .85rem;
+    white-space: pre-wrap;
+    background: #f7f7f9;
+    border-radius: 4px;
+    padding: .6rem .75rem;
+}

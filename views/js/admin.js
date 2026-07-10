@@ -63,9 +63,71 @@
         });
     }
 
+    function initViewModal() {
+        var modal = document.getElementById('po-view-modal');
+        if (!modal) {
+            return;
+        }
+
+        var textFields = ['date', 'status', 'customer_name', 'email', 'phone', 'address', 'town', 'quantity', 'destination', 'ip', 'product'];
+        var conditionalRows = ['phone', 'address', 'town', 'quantity', 'destination'];
+        var flags = ['urgent', 'has_paypal', 'first_order'];
+        var lastFocused = null;
+
+        function close() {
+            modal.hidden = true;
+            document.removeEventListener('keydown', onKeydown);
+            if (lastFocused) {
+                lastFocused.focus();
+            }
+        }
+
+        function onKeydown(event) {
+            if (event.key === 'Escape') {
+                close();
+            }
+        }
+
+        document.querySelectorAll('[data-po-view]').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                lastFocused = link;
+
+                textFields.forEach(function (field) {
+                    var target = modal.querySelector('[data-po-view-field="' + field + '"]');
+                    if (target) {
+                        target.textContent = link.getAttribute('data-' + field) || '';
+                    }
+                });
+
+                conditionalRows.forEach(function (field) {
+                    var row = modal.querySelector('[data-po-view-row="' + field + '"]');
+                    if (row) {
+                        row.hidden = !link.getAttribute('data-' + field);
+                    }
+                });
+
+                flags.forEach(function (flag) {
+                    var badge = modal.querySelector('[data-po-view-flag="' + flag + '"]');
+                    if (badge) {
+                        badge.hidden = link.getAttribute('data-' + flag) !== '1';
+                    }
+                });
+
+                modal.hidden = false;
+                document.addEventListener('keydown', onKeydown);
+            });
+        });
+
+        modal.querySelectorAll('[data-po-view-close]').forEach(function (el) {
+            el.addEventListener('click', close);
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         initTabs();
         initLanguageSwitch();
         initConfirmLinks();
+        initViewModal();
     });
 })();
