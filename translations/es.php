@@ -72,6 +72,9 @@ $_MODULE['<{priceandorder}prestashop>configure_e3da4be5937c231d4f5bf268f2fde3c4'
 $_MODULE['<{priceandorder}prestashop>configure_f4f70727dc34561dfde1a3c529b6205c'] = 'Configuración';
 $_MODULE['<{priceandorder}prestashop>configure_99f28e1ea9d203bf8e8101b0974085aa'] = 'Solicitudes de presupuesto';
 $_MODULE['<{priceandorder}prestashop>configure_46735831b428635924c465b379955543'] = 'Tutorial y ayuda';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_6e5a0c42f055028ccc7808e18b09ceea'] = 'Tiene 1 nueva solicitud de presupuesto esperando respuesta.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'Tiene %d nuevas solicitudes de presupuesto esperando respuesta.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_5de1da6d3790463ac36d3706cd584278'] = 'Ver solicitudes de presupuesto';
 $_MODULE['<{priceandorder}prestashop>floating_87e7af63c3cd88c47cb5df286692df1f'] = 'Solicitar presupuesto';
 $_MODULE['<{priceandorder}prestashop>floating_d3d2e617335f08df83599665eef8a418'] = 'Cerrar';
 $_MODULE['<{priceandorder}prestashop>priceandorder_bf7b5dbc9d03bed6f21ce145ad1afd48'] = 'Quote Request Pro - Solicitar un presupuesto personalizado';
@@ -86,6 +89,7 @@ $_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd
 $_MODULE['<{priceandorder}prestashop>priceandorder_cdc56a05d2089af4d83cce1be08ed767'] = 'No se pudo guardar la imagen. Inténtelo de nuevo.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_e8d93faf5d69328d83fa3666cdaee33a'] = 'Se produjo un error al guardar su configuración.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_8dd2f915acf4ec98006d11c9a4b0945b'] = 'Configuración actualizada correctamente.';
+$_MODULE['<{priceandorder}prestashop>quote_a5bf4f143475d4aaf7cd8e55b7e5f254'] = 'No pudimos guardar su solicitud. Inténtelo de nuevo.';
 $_MODULE['<{priceandorder}prestashop>quote_777f9e90cf251ec077f633406368c632'] = 'Solicitud no válida.';
 $_MODULE['<{priceandorder}prestashop>quote_5025e6d5fa437960bd6b4c953e0a62ac'] = 'Su sesión ha expirado. Recargue la página e inténtelo de nuevo.';
 $_MODULE['<{priceandorder}prestashop>quote_31b1499be091920861a244e70ef76d7a'] = 'Demasiadas solicitudes desde su conexión. Inténtelo de nuevo más tarde.';
@@ -93,7 +97,6 @@ $_MODULE['<{priceandorder}prestashop>quote_9b617757788e861ef5169f0a45e4b3ee'] = 
 $_MODULE['<{priceandorder}prestashop>quote_811723481ba2a6e389327dc8ca4852ef'] = 'Introduzca una dirección de correo válida.';
 $_MODULE['<{priceandorder}prestashop>quote_3bcf2f9ff620e72576bba9dadd0570fa'] = 'Introduzca su nombre.';
 $_MODULE['<{priceandorder}prestashop>quote_b82ab677733feffaef7f3de0989a72de'] = 'Acepte los Términos y la Política de Privacidad para continuar.';
-$_MODULE['<{priceandorder}prestashop>quote_a5bf4f143475d4aaf7cd8e55b7e5f254'] = 'No pudimos guardar su solicitud. Inténtelo de nuevo.';
 $_MODULE['<{priceandorder}prestashop>quote_3be7eb0a63a2d2e65e55d4350248f20a'] = '¡Gracias! Su solicitud de presupuesto ha sido enviada. Nos pondremos en contacto con usted en breve.';
 $_MODULE['<{priceandorder}prestashop>quote_93cba07454f06a4a960172bbd6e2a435'] = 'Sí';
 $_MODULE['<{priceandorder}prestashop>quote_bafd7322c6e97d25b6299b5d6fe8920b'] = 'No';

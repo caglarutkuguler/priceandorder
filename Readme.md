@@ -60,6 +60,10 @@ no longer supported as of v2.0.0 — see [Upgrading from 1.x](#upgrading-from-1x
   short delay/expiry check silently reject scripted submissions, and no more
   than 5 requests per hour are accepted from the same visitor. There is no
   CAPTCHA for a real visitor to solve.
+- A notification card appears at the top of the back office **Dashboard**
+  whenever there are new (unhandled) quote requests, with a direct link to
+  the Quote Requests tab — it disappears on its own once every new request
+  has been marked handled or deleted.
 
 ## Marketing suggestions
 
@@ -81,6 +85,13 @@ Open Design > Positions, search for `priceandorder`, and make sure it's
 attached to a column hook (sidebar) or the footer hook (floating button), and
 that your current theme actually renders that hook (some themes remove the
 left/right column entirely).
+
+**I don't see the Dashboard notification card even though I have new requests.**
+Check Design > Positions for the `Dashboard (displayDashboardTop)` hook and
+make sure `priceandorder` is attached and enabled there too — the same
+Positions page controls the storefront form and the Dashboard card
+independently. The card only appears when there is at least one request
+still marked "New" in the Quote Requests tab.
 
 **Quote request e-mails aren't arriving.**
 Double-check the recipient address in Settings, check your spam folder, and

@@ -72,6 +72,9 @@ $_MODULE['<{priceandorder}prestashop>configure_e3da4be5937c231d4f5bf268f2fde3c4'
 $_MODULE['<{priceandorder}prestashop>configure_f4f70727dc34561dfde1a3c529b6205c'] = 'Paramètres';
 $_MODULE['<{priceandorder}prestashop>configure_99f28e1ea9d203bf8e8101b0974085aa'] = 'Demandes de devis';
 $_MODULE['<{priceandorder}prestashop>configure_46735831b428635924c465b379955543'] = 'Tutoriel et aide';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_6e5a0c42f055028ccc7808e18b09ceea'] = 'Vous avez 1 nouvelle demande de devis en attente de réponse.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'Vous avez %d nouvelles demandes de devis en attente de réponse.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_5de1da6d3790463ac36d3706cd584278'] = 'Voir les demandes de devis';
 $_MODULE['<{priceandorder}prestashop>floating_87e7af63c3cd88c47cb5df286692df1f'] = 'Demander un devis';
 $_MODULE['<{priceandorder}prestashop>floating_d3d2e617335f08df83599665eef8a418'] = 'Fermer';
 $_MODULE['<{priceandorder}prestashop>priceandorder_bf7b5dbc9d03bed6f21ce145ad1afd48'] = 'Quote Request Pro - Demander un prix personnalisé';
@@ -86,6 +89,7 @@ $_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd
 $_MODULE['<{priceandorder}prestashop>priceandorder_cdc56a05d2089af4d83cce1be08ed767'] = 'L\'image n\'a pas pu être enregistrée. Veuillez réessayer.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_e8d93faf5d69328d83fa3666cdaee33a'] = 'Une erreur est survenue lors de l\'enregistrement de vos paramètres.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_8dd2f915acf4ec98006d11c9a4b0945b'] = 'Paramètres mis à jour avec succès.';
+$_MODULE['<{priceandorder}prestashop>quote_a5bf4f143475d4aaf7cd8e55b7e5f254'] = 'Nous n\'avons pas pu enregistrer votre demande. Veuillez réessayer.';
 $_MODULE['<{priceandorder}prestashop>quote_777f9e90cf251ec077f633406368c632'] = 'Requête invalide.';
 $_MODULE['<{priceandorder}prestashop>quote_5025e6d5fa437960bd6b4c953e0a62ac'] = 'Votre session a expiré. Veuillez recharger la page et réessayer.';
 $_MODULE['<{priceandorder}prestashop>quote_31b1499be091920861a244e70ef76d7a'] = 'Trop de demandes depuis votre connexion. Veuillez réessayer plus tard.';
@@ -93,7 +97,6 @@ $_MODULE['<{priceandorder}prestashop>quote_9b617757788e861ef5169f0a45e4b3ee'] = 
 $_MODULE['<{priceandorder}prestashop>quote_811723481ba2a6e389327dc8ca4852ef'] = 'Veuillez saisir une adresse e-mail valide.';
 $_MODULE['<{priceandorder}prestashop>quote_3bcf2f9ff620e72576bba9dadd0570fa'] = 'Veuillez saisir votre nom.';
 $_MODULE['<{priceandorder}prestashop>quote_b82ab677733feffaef7f3de0989a72de'] = 'Veuillez accepter les Conditions et la Politique de Confidentialité pour continuer.';
-$_MODULE['<{priceandorder}prestashop>quote_a5bf4f143475d4aaf7cd8e55b7e5f254'] = 'Nous n\'avons pas pu enregistrer votre demande. Veuillez réessayer.';
 $_MODULE['<{priceandorder}prestashop>quote_3be7eb0a63a2d2e65e55d4350248f20a'] = 'Merci ! Votre demande de devis a été envoyée. Nous vous recontacterons bientôt.';
 $_MODULE['<{priceandorder}prestashop>quote_93cba07454f06a4a960172bbd6e2a435'] = 'Oui';
 $_MODULE['<{priceandorder}prestashop>quote_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Non';

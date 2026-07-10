@@ -26,7 +26,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.0.0';
+        $this->version = '2.0.1';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -67,6 +67,7 @@ class Priceandorder extends Module
             || !$this->registerHook('displayLeftColumn')
             || !$this->registerHook('displayRightColumn')
             || !$this->registerHook('displayFooter')
+            || !$this->registerHook('displayDashboardTop')
             || !$this->installDb()
         ) {
             return false;
@@ -341,6 +342,41 @@ class Priceandorder extends Module
         $this->context->smarty->assign('po_form_html', $this->renderQuoteForm((int) $this->context->shop->id, 'floating'));
 
         return $this->fetch('module:' . $this->name . '/views/templates/front/floating.tpl');
+    }
+
+    /**
+     * Notification card on the back office Dashboard so new quote requests
+     * don't go unnoticed between visits to the module's own config page.
+     * Silent (no output) whenever there is nothing new to report.
+     */
+    public function hookDisplayDashboardTop($params)
+    {
+        $shopIds = Shop::getContextListShopID();
+        if (!$shopIds) {
+            return '';
+        }
+
+        $newCount = (int) Db::getInstance()->getValue(
+            'SELECT COUNT(*) FROM `' . _DB_PREFIX_ . 'priceandorder_quote`
+            WHERE `status` = ' . (int) PriceandorderQuoteClass::STATUS_NEW . '
+            AND `id_shop` IN (' . implode(',', array_map('intval', $shopIds)) . ')'
+        );
+
+        if ($newCount < 1) {
+            return '';
+        }
+
+        $this->context->controller->addCSS($this->_path . 'views/css/dashboard.css');
+
+        $this->context->smarty->assign([
+            'po_new_count' => $newCount,
+            'po_requests_url' => $this->context->link->getAdminLink('AdminModules', true, [], [
+                'configure' => $this->name,
+                'po_tab' => 'requests',
+            ]),
+        ]);
+
+        return $this->fetch('module:' . $this->name . '/views/templates/admin/dashboard_notification.tpl');
     }
 
     public function getContent()
