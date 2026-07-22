@@ -103,7 +103,22 @@
         });
     }
 
+    function relocateFloating() {
+        // A position:fixed FAB / modal must not live inside a theme grid container.
+        // Under Bootstrap 5 (Hummingbird, PS8-9) the footer wraps hook output in a
+        // `.row`, and Bootstrap 5 adds `.row > * { width:100%; max-width:100% }`,
+        // which stretches the fixed button across the whole page. Bootstrap 4
+        // (Classic) has no such rule, so it only breaks on newer themes. Moving the
+        // nodes to <body> means only our own CSS applies, on any theme.
+        document.querySelectorAll('.po-fab, #po-modal').forEach(function (el) {
+            if (el.parentNode !== document.body) {
+                document.body.appendChild(el);
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
+        relocateFloating();
         document.querySelectorAll('[data-po-form]').forEach(handleSubmit);
         initModal();
     });

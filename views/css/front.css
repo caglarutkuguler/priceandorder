@@ -174,10 +174,15 @@
     position: fixed;
     right: 1.25rem;
     bottom: 1.25rem;
+    left: auto;
     z-index: 1030;
     display: inline-flex;
     align-items: center;
     gap: .5rem;
+    /* Defend against grid rules like Bootstrap 5's `.row > * { width:100% }` if the
+       button is ever rendered inside a row (front.js also relocates it to <body>). */
+    width: auto;
+    max-width: none;
     padding: .75rem 1.1rem;
     background: var(--po-accent, #da0f00);
     color: #fff;
