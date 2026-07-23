@@ -26,7 +26,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.0.5';
+        $this->version = '2.0.6';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;

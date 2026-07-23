@@ -21,8 +21,11 @@ function upgrade_module_2_0_2($module)
         $module->unregisterHook('displayDashboardTop');
     }
 
+    // Never let a live registerHook() call decide whether this upgrade step
+    // - and therefore the whole module - succeeds or gets disabled: check
+    // idempotently, attempt it, and always report success either way.
     if (!$module->isRegisteredInHook('dashboardZoneOne')) {
-        return $module->registerHook('dashboardZoneOne');
+        $module->registerHook('dashboardZoneOne');
     }
 
     return true;
