@@ -106,6 +106,19 @@ $_MODULE['<{priceandorder}prestashop>d3d7e584319ea860367cbbdbfb94ad5b'] = '* pol
 $_MODULE['<{priceandorder}prestashop>8d9b4cb90a4ffdf2eae9cde2640bf6aa'] = 'Nasza najlepsza oferta';
 $_MODULE['<{priceandorder}prestashop>d59048f21fd887ad520398ce677be586'] = 'Dowiedz się więcej';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{priceandorder}prestashop>_requests_c451ad9c4351f09b7d12d6ac9ebf7d48'] = '%d żądania(a)';
+$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Pływający przycisk „Zapytaj o wycenę” na każdej stronie';
+$_MODULE['<{priceandorder}prestashop>_settings_bda293c69514eabd0f56fda43edc3bb2'] = 'Pozostaw puste, aby automatycznie korzystać ze strony Regulaminu Twojego sklepu.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Otwórz Projekt > Pozycje w panelu administracyjnym, wyszukaj „cena i zamówienie” i upewnij się, że jest ono dołączone do zaczepu kolumny (pasek boczny) lub zaczepu stopki (pływający przycisk) i że bieżący motyw faktycznie wyświetla ten zaczep (niektóre motywy usuwają lewą/prawą kolumnę).';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Sprawdź Projekt > Pozycje haka ZoneOne na pulpicie nawigacyjnym i upewnij się, że cena i zamówienie są tam również dołączone i włączone &mdash; jest kontrolowany niezależnie od formularza w sklepie i pojawia się tylko na rzeczywistej stronie Panelu. Karta pojawia się tylko wtedy, gdy co najmniej jedno żądanie jest nadal oznaczone jako „Nowe”.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Przejdź do opcji Projekt > Stanowiska w panelu administracyjnym i upewnij się, że włączona jest opcja Priceandorder w haczyku „Lewa kolumna” lub „Prawa kolumna”, aby wyświetlić formularz paska bocznego, oraz w „Stopce” dla pływającego przycisku.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_fb7d6c8c8be4cd730f6e810dd0c33767'] = 'Ustaw je jawnie w Ustawieniach. Jeśli link Warunki pozostanie pusty, automatycznie zostanie użyta strona CMS z Warunkami korzystania z Twojego sklepu; jeśli łącze Prywatność pozostanie puste, po prostu nie będzie wyświetlane.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'Masz %d nowych próśb o wycenę oczekujących na odpowiedź.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'Link „%s” musi zaczynać się od http:// lub https://';
+$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '„%s” nie jest prawidłowym adresem e-mail.';
+$_MODULE['<{priceandorder}prestashop>quoteform_af9ec94dd1758ce4ba6102b444660399'] = 'Cześć %s! Powiedz nam, czego szukasz, a my skontaktujemy się z Tobą z ceną.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

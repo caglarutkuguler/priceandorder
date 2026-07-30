@@ -106,6 +106,19 @@ $_MODULE['<{priceandorder}prestashop>d3d7e584319ea860367cbbdbfb94ad5b'] = '* Pfl
 $_MODULE['<{priceandorder}prestashop>8d9b4cb90a4ffdf2eae9cde2640bf6aa'] = 'Unser bestes Angebot';
 $_MODULE['<{priceandorder}prestashop>d59048f21fd887ad520398ce677be586'] = 'Mehr erfahren';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{priceandorder}prestashop>_requests_c451ad9c4351f09b7d12d6ac9ebf7d48'] = '%d Anfrage(n)';
+$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Schwebender Button „Angebot anfordern“ auf jeder Seite';
+$_MODULE['<{priceandorder}prestashop>_settings_bda293c69514eabd0f56fda43edc3bb2'] = 'Lassen Sie das Feld leer, um automatisch die Seite mit den Allgemeinen Geschäftsbedingungen Ihres Shops zu verwenden.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Öffnen Sie Design > Positionen im Backoffice, suchen Sie nach „priceandorder“ und stellen Sie sicher, dass es an einen Spalten-Hook (Seitenleiste) oder den Fußzeilen-Hook (schwebende Schaltfläche) angehängt ist und dass Ihr aktuelles Theme diesen Hook tatsächlich anzeigt (einige Themes entfernen die linke/rechte Spalte).';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Überprüfen Sie „Design“ > „Positionen“ für den DashboardZoneOne-Hook und stellen Sie sicher, dass „priceandorder“ auch dort angehängt und aktiviert ist &mdash; Es wird getrennt vom Storefront-Formular gesteuert und erscheint nur auf der eigentlichen Dashboard-Seite. Die Karte wird nur angezeigt, solange mindestens eine Anfrage noch als „Neu“ markiert ist.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Gehen Sie in Ihrem Backoffice zu Design > Positionen und stellen Sie sicher, dass Priceandorder für den Haken „Linke Spalte“ oder „Rechte Spalte“ aktiviert ist, um das Seitenleistenformular anzuzeigen, und für „Fußzeile“ für die schwebende Schaltfläche.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_fb7d6c8c8be4cd730f6e810dd0c33767'] = 'Legen Sie sie explizit in den Einstellungen fest. Wenn der Link „AGB“ leer bleibt, wird automatisch die CMS-Seite „AGB“ Ihres Shops verwendet; Wenn der Link „Datenschutz“ leer bleibt, wird er einfach nicht angezeigt.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'Sie haben %d neue Angebotsanfragen, die auf eine Antwort warten.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'Der Link „%s“ muss mit http:// oder https:// beginnen';
+$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '„%s“ ist keine gültige E-Mail-Adresse.';
+$_MODULE['<{priceandorder}prestashop>quoteform_af9ec94dd1758ce4ba6102b444660399'] = 'Hallo %s! Sagen Sie uns, wonach Sie suchen, und wir melden uns mit einem Preis bei Ihnen.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

@@ -147,7 +147,7 @@ $_MODULE['<{priceandorder}prestashop>_settings_33630dfeef03c19351e36f85cc429e41'
 $_MODULE['<{priceandorder}prestashop>_settings_3d5b65f0448a0a95894b578c5b154cfd'] = 'Quote recipient e-mail(s)';
 $_MODULE['<{priceandorder}prestashop>_settings_489e952765a29b626a622980183cfb5a'] = 'Order urgency';
 $_MODULE['<{priceandorder}prestashop>_settings_4e23610e7471767ede9bc53b9f22e617'] = 'Privacy Policy link';
-$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Floating \"Ask for a quote\" button on every page';
+$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Floating "Ask for a quote" button on every page';
 $_MODULE['<{priceandorder}prestashop>_settings_62b539be1371456301ddc92c7a61de19'] = 'Ask if they already have a PayPal account';
 $_MODULE['<{priceandorder}prestashop>_settings_73c8a0a1101c3a8b45d2115a99c7c9c7'] = 'Remove this image';
 $_MODULE['<{priceandorder}prestashop>_settings_7d0188b34bb637c844784fec9be13e7a'] = 'Learn more link';
@@ -180,12 +180,12 @@ $_MODULE['<{priceandorder}prestashop>_tutorial_813ce2687d65c0253de66d80cddab8f3'
 $_MODULE['<{priceandorder}prestashop>_tutorial_958aae0a194da728c36d3e7221675a84'] = 'The form does not appear on the storefront.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_9ffdb95250e26c7a6b468126ac7c75b0'] = 'How it works';
 $_MODULE['<{priceandorder}prestashop>_tutorial_a7821d5fcb146c5ad0b90884e504d314'] = 'Uploads are limited to JPG, PNG, GIF or WEBP files up to 4 MB and are automatically resized to fit within 400x280 px while keeping their proportions, so the file itself is never distorted.';
-$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Open Design > Positions in the back office, search for \"priceandorder\" and make sure it is attached to a column hook (sidebar) or the footer hook (floating button), and that your current theme actually displays that hook (some themes remove the left/right column).';
+$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Open Design > Positions in the back office, search for "priceandorder" and make sure it is attached to a column hook (sidebar) or the footer hook (floating button), and that your current theme actually displays that hook (some themes remove the left/right column).';
 $_MODULE['<{priceandorder}prestashop>_tutorial_bc9e9fef06497c843ddb85f457c24635'] = 'Logged-in customers are never asked for their name or e-mail &mdash; their account details are used automatically.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_bd4b0999a932632905b77cd2fbc0a97c'] = 'Spam protection is automatic: a hidden trap field and a short delay check silently block scripted submissions, and no more than 5 requests per hour are accepted from the same visitor. There is nothing for a real visitor to solve.';
-$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Check Design > Positions for the dashboardZoneOne hook and make sure priceandorder is attached and enabled there as well &mdash; it is controlled separately from the storefront form, and only appears on the actual Dashboard page. The card only shows while at least one request is still marked \"New\".';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Check Design > Positions for the dashboardZoneOne hook and make sure priceandorder is attached and enabled there as well &mdash; it is controlled separately from the storefront form, and only appears on the actual Dashboard page. The card only shows while at least one request is still marked "New".';
 $_MODULE['<{priceandorder}prestashop>_tutorial_cb59b87e00d11222bfd9159d0d23836f'] = 'Getting started';
-$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Go to Design > Positions in your back office and make sure Priceandorder is enabled on the \"Left column\" or \"Right column\" hook to show the sidebar form, and on \"Footer\" for the floating button.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Go to Design > Positions in your back office and make sure Priceandorder is enabled on the "Left column" or "Right column" hook to show the sidebar form, and on "Footer" for the floating button.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_e41d93a6e7c1aa5aab80cb4cab9dc886'] = 'A notification card appears on your Dashboard whenever there are new requests, with a direct link to this Quote Requests tab. It disappears once every new request is marked handled or deleted.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_ea67abf8988cbc6b378a032f822801f8'] = 'Open the Settings tab and enter the e-mail address(es) that should receive quote requests.';
 $_MODULE['<{priceandorder}prestashop>_tutorial_f9459c8296e5294ec5990a767724198b'] = 'The Terms & Conditions / Privacy Policy links are missing or wrong.';
@@ -201,7 +201,7 @@ $_MODULE['<{priceandorder}prestashop>dashboard_notification_6e5a0c42f055028ccc78
 $_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'You have %d new quote requests awaiting a reply.';
 $_MODULE['<{priceandorder}prestashop>floating_87e7af63c3cd88c47cb5df286692df1f'] = 'Ask for a quote';
 $_MODULE['<{priceandorder}prestashop>floating_d3d2e617335f08df83599665eef8a418'] = 'Close';
-$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'The link \"%s\" must start with http:// or https://';
+$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'The link "%s" must start with http:// or https://';
 $_MODULE['<{priceandorder}prestashop>priceandorder_22080c32a75c52874611c80f625eef69'] = 'Something went wrong. Please try again in a moment.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_4d001e13295999e5cd7d1bfeb08ce238'] = 'This will permanently delete your settings and every quote request you have received. Are you sure?';
 $_MODULE['<{priceandorder}prestashop>priceandorder_5a2932284040389d13d1f7c64a2d69cc'] = 'The quote recipient e-mail address is required.';
@@ -211,7 +211,7 @@ $_MODULE['<{priceandorder}prestashop>priceandorder_bf7b5dbc9d03bed6f21ce145ad1af
 $_MODULE['<{priceandorder}prestashop>priceandorder_cdc56a05d2089af4d83cce1be08ed767'] = 'The image could not be saved. Please try again.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_dd66133936a975f3648a3ba2e8e436d4'] = 'Sending your request...';
 $_MODULE['<{priceandorder}prestashop>priceandorder_e8d93faf5d69328d83fa3666cdaee33a'] = 'An error occurred while saving your settings.';
-$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '\"%s\" is not a valid e-mail address.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" is not a valid e-mail address.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_f95031308392ede3d4352218d5fe1243'] = 'Adds a quote-request form (sidebar block and floating button) so shoppers can ask for a custom price on any product. Requests are e-mailed to you and kept in a simple list in the back office.';
 $_MODULE['<{priceandorder}prestashop>quoteform_1d8cd2bfc6943dcf70236f7d351572a0'] = 'Terms & Conditions';
 $_MODULE['<{priceandorder}prestashop>quoteform_1f8261d17452a959e013666c5df45e07'] = 'Phone number';

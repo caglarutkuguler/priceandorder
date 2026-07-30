@@ -106,6 +106,19 @@ $_MODULE['<{priceandorder}prestashop>d3d7e584319ea860367cbbdbfb94ad5b'] = '* ver
 $_MODULE['<{priceandorder}prestashop>8d9b4cb90a4ffdf2eae9cde2640bf6aa'] = 'Ons beste aanbod';
 $_MODULE['<{priceandorder}prestashop>d59048f21fd887ad520398ce677be586'] = 'Meer informatie';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{priceandorder}prestashop>_requests_c451ad9c4351f09b7d12d6ac9ebf7d48'] = '%d verzoek(en)';
+$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Zwevende knop "Vraag een offerte aan" op elke pagina';
+$_MODULE['<{priceandorder}prestashop>_settings_bda293c69514eabd0f56fda43edc3bb2'] = 'Laat dit leeg om automatisch de eigen Algemene Voorwaarden-pagina van uw winkel te gebruiken.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Open Ontwerp > Posities in de backoffice, zoek naar "prijsenbestelling" en zorg ervoor dat deze is gekoppeld aan een kolomhaak (zijbalk) of de voetteksthaak (zwevende knop), en dat uw huidige thema die haak ook daadwerkelijk weergeeft (sommige thema\'s verwijderen de linker-/rechterkolom).';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Controleer Ontwerp > Posities voor de dashboardZoneOne-haak en zorg ervoor dat prijs en bestelling daar ook zijn bevestigd en ingeschakeld -mdash; het wordt afzonderlijk van het storefront-formulier beheerd en verschijnt alleen op de daadwerkelijke Dashboard-pagina. De kaart wordt alleen weergegeven zolang ten minste één aanvraag nog gemarkeerd is als \'Nieuw\'.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Ga naar Ontwerp > Posities in uw backoffice en zorg ervoor dat Priceandorder is ingeschakeld op de haak "Linkerkolom" of "Rechterkolom" om het zijbalkformulier weer te geven, en op "Voettekst" voor de zwevende knop.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_fb7d6c8c8be4cd730f6e810dd0c33767'] = 'Stel ze expliciet in Instellingen. Als de link Voorwaarden leeg wordt gelaten, wordt automatisch de CMS-pagina Algemene voorwaarden van uw winkel gebruikt; als de Privacy-link leeg wordt gelaten, wordt deze eenvoudigweg niet weergegeven.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'U heeft %d nieuwe offerteaanvragen die wachten op een antwoord.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'De link "%s" moet beginnen met http:// of https://';
+$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" is geen geldig e-mailadres.';
+$_MODULE['<{priceandorder}prestashop>quoteform_af9ec94dd1758ce4ba6102b444660399'] = 'Hallo %s! Vertel ons wat u zoekt en wij komen bij u terug met een prijs.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

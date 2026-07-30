@@ -106,6 +106,19 @@ $_MODULE['<{priceandorder}prestashop>d3d7e584319ea860367cbbdbfb94ad5b'] = '* cam
 $_MODULE['<{priceandorder}prestashop>8d9b4cb90a4ffdf2eae9cde2640bf6aa'] = 'Nuestra mejor oferta';
 $_MODULE['<{priceandorder}prestashop>d59048f21fd887ad520398ce677be586'] = 'Más información';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{priceandorder}prestashop>_requests_c451ad9c4351f09b7d12d6ac9ebf7d48'] = '%d solicitud(es)';
+$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Botón flotante "Solicitar presupuesto" en cada página';
+$_MODULE['<{priceandorder}prestashop>_settings_bda293c69514eabd0f56fda43edc3bb2'] = 'Déjelo vacío para usar automáticamente la página de Términos y condiciones de su tienda.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Abra Diseño > Posiciones en el back office, busque "precio y pedido" y asegúrese de que esté adjunto a un gancho de columna (barra lateral) o al gancho de pie de página (botón flotante), y que su tema actual realmente muestre ese gancho (algunos temas eliminan la columna izquierda/derecha).';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Verifique Diseño > Posiciones para el gancho DashboardZoneOne y asegúrese de que priceandorder esté adjunto y habilitado allí también; se controla por separado del formulario de la tienda y solo aparece en la página del Panel real. La tarjeta solo se muestra mientras al menos una solicitud todavía está marcada como "Nueva".';
+$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Vaya a Diseño > Posiciones en su back office y asegúrese de que Priceandorder esté habilitado en el enlace "Columna izquierda" o "Columna derecha" para mostrar el formulario de la barra lateral, y en "Pie de página" para el botón flotante.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_fb7d6c8c8be4cd730f6e810dd0c33767'] = 'Configúrelos explícitamente en Configuración. Si el enlace Términos se deja vacío, la página CMS de Términos y condiciones de su tienda se utiliza automáticamente; si el enlace Privacidad se deja vacío, simplemente no se muestra.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'Tiene %d nuevas solicitudes de cotización esperando respuesta.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'El enlace "%s" debe comenzar con http:// o https://';
+$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" no es una dirección de correo electrónico válida.';
+$_MODULE['<{priceandorder}prestashop>quoteform_af9ec94dd1758ce4ba6102b444660399'] = 'Hola %s! Díganos qué está buscando y nos comunicaremos con usted con un precio.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

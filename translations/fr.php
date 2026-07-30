@@ -106,6 +106,19 @@ $_MODULE['<{priceandorder}prestashop>d3d7e584319ea860367cbbdbfb94ad5b'] = '* cha
 $_MODULE['<{priceandorder}prestashop>8d9b4cb90a4ffdf2eae9cde2640bf6aa'] = 'Notre meilleure offre';
 $_MODULE['<{priceandorder}prestashop>d59048f21fd887ad520398ce677be586'] = 'En savoir plus';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{priceandorder}prestashop>_requests_c451ad9c4351f09b7d12d6ac9ebf7d48'] = '%d demande(s)';
+$_MODULE['<{priceandorder}prestashop>_settings_58c62b6517eb4a8716b53472f335eda8'] = 'Bouton flottant "Demander un devis" sur chaque page';
+$_MODULE['<{priceandorder}prestashop>_settings_bda293c69514eabd0f56fda43edc3bb2'] = 'Laissez vide pour utiliser automatiquement la page Conditions générales de votre boutique.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_babc3ee2827d2d3ae2ea9f8800c92452'] = 'Ouvrez Design > Positions dans le back-office, recherchez « priceandorder » et assurez-vous qu\'il est attaché à un crochet de colonne (barre latérale) ou au crochet de pied de page (bouton flottant), et que votre thème actuel affiche réellement ce crochet (certains thèmes suppriment la colonne gauche/droite).';
+$_MODULE['<{priceandorder}prestashop>_tutorial_c0ce395b371236535761772d3eed1602'] = 'Vérifiez Conception > Positions pour le crochet DashboardZoneOne et assurez-vous que priceandorder y est également joint et activé ; il est contrôlé séparément du formulaire de vitrine et n\'apparaît que sur la page réelle du tableau de bord. La carte ne s\'affiche que tant qu\'au moins une demande est encore marquée "Nouveau".';
+$_MODULE['<{priceandorder}prestashop>_tutorial_cc3b0858bf5fcf55dc3e1daae0076461'] = 'Accédez à Conception > Positions dans votre back-office et assurez-vous que Priceandorder est activé sur le crochet « Colonne de gauche » ou « Colonne de droite » pour afficher le formulaire de la barre latérale, et sur « Pied de page » pour le bouton flottant.';
+$_MODULE['<{priceandorder}prestashop>_tutorial_fb7d6c8c8be4cd730f6e810dd0c33767'] = 'Définissez-les explicitement dans Paramètres. Si le lien Conditions est laissé vide, la page CMS Conditions générales de votre boutique est utilisée automatiquement ; si le lien Confidentialité est laissé vide, il n\'est tout simplement pas affiché.';
+$_MODULE['<{priceandorder}prestashop>dashboard_notification_ae7e777680361e4405302ce1b15a8e3f'] = 'Vous avez %d nouvelles demandes de devis en attente de réponse.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_216c8717952aaebe2f9031b87d2bd9dc'] = 'Le lien "%s" doit commencer par http:// ou https://';
+$_MODULE['<{priceandorder}prestashop>priceandorder_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" n\'est pas une adresse e-mail valide.';
+$_MODULE['<{priceandorder}prestashop>quoteform_af9ec94dd1758ce4ba6102b444660399'] = 'Salut %s ! Dites-nous ce que vous recherchez et nous vous répondrons avec un prix.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format
