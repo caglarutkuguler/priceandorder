@@ -11,8 +11,9 @@
 <style>
 .po-dash-card {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: .9rem;
+    gap: .6rem .9rem;
     background: #fff6e5;
     border: 1px solid #f5c26b;
     border-radius: 4px;
@@ -22,6 +23,13 @@
     color: #6a4a06;
     font-family: inherit;
 }
+.po-dash-card .po-dash-main {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    flex: 1 1 180px;
+    min-width: 0;
+}
 .po-dash-card .po-dash-icon {
     font-size: 1.4rem;
     line-height: 1;
@@ -29,9 +37,14 @@
 }
 .po-dash-card .po-dash-body {
     flex: 1 1 auto;
+    min-width: 0;
 }
 .po-dash-card .po-dash-btn {
     flex: none;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: inline-block;
     padding: .5rem 1rem;
     background: #da0f00;
@@ -40,6 +53,7 @@
     font-size: .82rem;
     font-weight: 600;
     text-decoration: none;
+    text-align: center;
     white-space: nowrap;
 }
 .po-dash-card .po-dash-btn:hover {
@@ -47,13 +61,15 @@
 }
 </style>
 <div class="po-dash-card">
-    <div class="po-dash-icon" aria-hidden="true">&#128172;</div>
-    <div class="po-dash-body">
-        {if $po_new_count == 1}
-            {l s='You have 1 new quote request awaiting a reply.' mod='priceandorder'}
-        {else}
-            {l s='You have %d new quote requests awaiting a reply.' sprintf=[$po_new_count] mod='priceandorder'}
-        {/if}
+    <div class="po-dash-main">
+        <div class="po-dash-icon" aria-hidden="true">&#128172;</div>
+        <div class="po-dash-body">
+            {if $po_new_count == 1}
+                {l s='You have 1 new quote request awaiting a reply.' mod='priceandorder'}
+            {else}
+                {l s='You have %d new quote requests awaiting a reply.' sprintf=[$po_new_count] mod='priceandorder'}
+            {/if}
+        </div>
     </div>
     <a href="{$po_requests_url}" class="po-dash-btn">{l s='View quote requests' mod='priceandorder'}</a>
 </div>

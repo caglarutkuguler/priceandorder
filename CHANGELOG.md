@@ -2,6 +2,21 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.0.7
+
+### Fixed
+
+- **Dashboard notification card overflowed in longer languages.** The
+  "View quote requests" button had `flex: none` with `white-space: nowrap`
+  in a single flex row alongside the message text, so on narrower dashboard
+  columns (and with longer translated strings, e.g. French "Voir les
+  demandes de devis") the button refused to shrink and forced the text into
+  a one-word-per-line column while the button itself overflowed the card,
+  overlapping neighboring dashboard widgets. The icon+text group and the
+  button are now separate flex items that wrap onto their own line when
+  there isn't room for both, and the button gets an `ellipsis` safety net
+  for the rare case a translation is wider than the available column.
+
 ## 2.0.6
 
 ### Fixed
