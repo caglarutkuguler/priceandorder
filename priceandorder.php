@@ -423,6 +423,7 @@ class Priceandorder extends Module
 
     public function getContent()
     {
+        require_once _PS_MODULE_DIR_ . 'priceandorder/classes/MegVentureAdsWidget.php';
         $this->ensureUpToDate();
 
         $this->context->controller->addCSS($this->_path . 'views/css/admin.css');
@@ -446,7 +447,9 @@ class Priceandorder extends Module
             'po_tutorial_html' => $this->renderTutorialTab(),
         ]);
 
-        return $this->display(__FILE__, 'views/templates/admin/configure.tpl');
+        $content = $this->display(__FILE__, 'views/templates/admin/configure.tpl');
+
+        return $content . MegVentureAdsWidget::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
     }
 
     private function processSettingsForm()
