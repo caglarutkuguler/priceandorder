@@ -1,7 +1,7 @@
 {*
 * @author    MEG Venture <info@megventure.com>
-* @copyright 2007-2026 MEG Venture
-* @license   All rights reserved
+* @copyright 2007-2026 MEG Venture & Consulting Ltd.
+* @license   https://opensource.org/licenses/MIT MIT License
 *}
 <form action="{$po_current_index}&token={$po_token}" method="post" enctype="multipart/form-data" class="po-settings-form">
     <input type="hidden" name="po_tab" value="settings">

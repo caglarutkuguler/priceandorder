@@ -1,7 +1,7 @@
 {*
 * @author    MEG Venture <info@megventure.com>
-* @copyright 2007-2026 MEG Venture
-* @license   All rights reserved
+* @copyright 2007-2026 MEG Venture & Consulting Ltd.
+* @license   https://opensource.org/licenses/MIT MIT License
 *}
 {* The Dashboard renders its hook zones via a separate AJAX call after the
    page header has already been sent, so a normal addCSS()-enqueued

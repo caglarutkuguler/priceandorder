@@ -1,7 +1,7 @@
 {*
 * @author    MEG Venture <info@megventure.com>
-* @copyright 2007-2026 MEG Venture
-* @license   All rights reserved
+* @copyright 2007-2026 MEG Venture & Consulting Ltd.
+* @license   https://opensource.org/licenses/MIT MIT License
 *}
 <div class="po-requests">
     <div class="po-filters">
