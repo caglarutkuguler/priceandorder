@@ -11,6 +11,8 @@ even if an e-mail bounces.
 Compatible with **PrestaShop 1.7 through 9.x**. Older versions (1.4-1.6) are
 no longer supported as of v2.0.0 — see [Upgrading from 1.x](#upgrading-from-1x).
 
+**Installable zip:** the archive GitHub generates on the releases page is a source snapshot, not an installable module — PrestaShop rejects it because the folder inside carries the version number. Download the ready-to-install zip from [megventure.com](https://megventure.com/en/free-modules/10-prestashop-quote-request-form-ask-for-a-custom-price-8691246228208.html).
+
 ## Why this helps
 
 - **Turns "I couldn't find a price" into a lead.** Custom quoting, made-to-order,
