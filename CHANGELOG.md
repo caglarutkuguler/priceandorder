@@ -2,6 +2,17 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.1.0
+
+### Added
+
+- A single review-request line on the module's own configuration page. It
+  appears at the earliest 21 days after installing, asks once for a short
+  review on megventure.com, and disappears forever after a click, a
+  "No thanks", or three unanswered views. It makes no outbound request of any
+  kind and stores nothing beyond three prefixed configuration values, which
+  uninstalling removes.
+
 ## 2.0.7
 
 ### Fixed

@@ -241,3 +241,7 @@ $_MODULE['<{priceandorder}prestashop>quoteform_f11b368cddfe37c47af9b9d91c6ba4f0'
 $_MODULE['<{priceandorder}prestashop>quoteform_f3533a2e4c824994e48a0ef4414d8e90'] = 'İstenen miktar';
 $_MODULE['<{priceandorder}prestashop>quoteform_fa2ead697d9998cbc65c81384e6533d5'] = 'Gizlilik Politikası';
 $_MODULE['<{priceandorder}prestashop>quoteform_fdbf7ea71413939836ccc4d8f21240e9'] = 'Teslimat adresi';
+$_MODULE['<{priceandorder}prestashop>megventurereviewnudge_c980491d2b999421c4aa1ef4449323e1'] = 'Bu modülden memnun musunuz? Kısa bir değerlendirme, diğer mağaza sahiplerinin bu modülü bulmasına yardımcı olur.';
+$_MODULE['<{priceandorder}prestashop>megventurereviewnudge_6ecbf3c5ab7a06f08c526f02bce2b2d6'] = 'Değerlendirme yazın';
+$_MODULE['<{priceandorder}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b025bad5bc114'] = 'Hayır, teşekkürler';
+$_MODULE['<{priceandorder}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Tamam, bir daha sormayacağız.';

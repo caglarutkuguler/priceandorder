@@ -26,7 +26,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.0.7';
+        $this->version = '2.1.0';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -58,6 +58,8 @@ class Priceandorder extends Module
 
     public function install()
     {
+        require_once dirname(__FILE__) . '/classes/MegVentureReviewNudge.php';
+
         if (Shop::isFeatureActive()) {
             Shop::setContext(Shop::CONTEXT_ALL);
         }
@@ -77,11 +79,14 @@ class Priceandorder extends Module
             $this->createDefaultSettings((int) $shop['id_shop']);
         }
 
-        return true;
+        return MegVentureReviewNudge::onInstall();
     }
 
     public function uninstall()
     {
+        require_once dirname(__FILE__) . '/classes/MegVentureReviewNudge.php';
+        MegVentureReviewNudge::onUninstall();
+
         $queries = [
             'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'priceandorder`',
             'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'priceandorder_lang`',
@@ -424,6 +429,17 @@ class Priceandorder extends Module
     public function getContent()
     {
         require_once _PS_MODULE_DIR_ . 'priceandorder/classes/MegVentureAdsWidget.php';
+        require_once _PS_MODULE_DIR_ . 'priceandorder/classes/MegVentureReviewNudge.php';
+
+        // May redirect (review click) — before anything renders on purpose.
+        // Concatenated configure URL on purpose: getAdminLink()'s $params
+        // argument does not exist on the oldest supported cores.
+        $nudge = MegVentureReviewNudge::handleRequest($this)
+            . MegVentureReviewNudge::render(
+                $this,
+                $this->context->link->getAdminLink('AdminModules', true) . '&configure=' . $this->name
+            );
+
         $this->ensureUpToDate();
 
         $this->context->controller->addCSS($this->_path . 'views/css/admin.css');
@@ -449,7 +465,7 @@ class Priceandorder extends Module
 
         $content = $this->display(__FILE__, 'views/templates/admin/configure.tpl');
 
-        return $content . MegVentureAdsWidget::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
+        return $nudge . $content . MegVentureAdsWidget::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
     }
 
     private function processSettingsForm()
