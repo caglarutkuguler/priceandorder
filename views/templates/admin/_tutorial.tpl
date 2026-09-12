@@ -15,7 +15,7 @@
     <h3>{l s='How it works' mod='priceandorder'}</h3>
     <ul class="po-list">
         <li>{l s='The sidebar block and the floating button share the same form; a visitor can use either.' mod='priceandorder'}</li>
-        <li>{l s='Logged-in customers are never asked for their name or e-mail &mdash; their account details are used automatically.' mod='priceandorder'}</li>
+        <li>{l s='Logged-in customers are never asked for their name or e-mail — their account details are used automatically.' mod='priceandorder'}</li>
         <li>{l s='Every submission is saved in the Quote Requests tab even if the notification e-mail fails to deliver, so nothing gets lost.' mod='priceandorder'}</li>
         <li>{l s='Spam protection is automatic: a hidden trap field and a short delay check silently block scripted submissions, and no more than 5 requests per hour are accepted from the same visitor. There is nothing for a real visitor to solve.' mod='priceandorder'}</li>
         <li>{l s='A notification card appears on your Dashboard whenever there are new requests, with a direct link to this Quote Requests tab. It disappears once every new request is marked handled or deleted.' mod='priceandorder'}</li>
@@ -39,7 +39,7 @@
         <dd>{l s='Uploads are limited to JPG, PNG, GIF or WEBP files up to 4 MB and are automatically resized to fit within 400x280 px while keeping their proportions, so the file itself is never distorted.' mod='priceandorder'}</dd>
 
         <dt>{l s='The Dashboard notification card is not showing up.' mod='priceandorder'}</dt>
-        <dd>{l s='Check Design > Positions for the dashboardZoneOne hook and make sure priceandorder is attached and enabled there as well &mdash; it is controlled separately from the storefront form, and only appears on the actual Dashboard page. The card only shows while at least one request is still marked "New".' mod='priceandorder'}</dd>
+        <dd>{l s='Check Design > Positions for the dashboardZoneOne hook and make sure priceandorder is attached and enabled there as well — it is controlled separately from the storefront form, and only appears on the actual Dashboard page. The card only shows while at least one request is still marked "New".' mod='priceandorder'}</dd>
     </dl>
 
     <p class="po-support">

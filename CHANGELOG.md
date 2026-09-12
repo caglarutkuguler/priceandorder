@@ -2,6 +2,16 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.1.1
+
+### Fixed
+
+- **Two lines of the Tutorial & Help tab showed a literal `&mdash;`.** The
+  source strings and all eight translations spelled the dash as an HTML
+  entity, and PrestaShop escapes module translations once more when it
+  renders them, so the entity itself reached the screen instead of a dash.
+  They now use the real character.
+
 ## 2.1.0
 
 ### Added
