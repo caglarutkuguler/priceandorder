@@ -8,7 +8,7 @@ All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceand
 
 - **Two lines of the Tutorial & Help tab showed a literal `&mdash;`.** The
   source strings and all eight translations spelled the dash as an HTML
-  entity, and PrestaShop escapes module translations once more when it
+  entity (the Dutch one as a broken `-mdash;`), and PrestaShop escapes module translations once more when it
   renders them, so the entity itself reached the screen instead of a dash.
   They now use the real character.
 
