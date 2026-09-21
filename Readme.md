@@ -1,5 +1,7 @@
 # Quote Request Pro - Ask For a Custom Price
 
+**Version:** 2.1.1
+
 *(module technical name: `priceandorder`, formerly "Price and Order - Column Quote Form")*
 
 Adds a quote-request form to your PrestaShop storefront — a sidebar block and a
