@@ -93,12 +93,9 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
             return ['success' => false, 'message' => $this->poText('We could not save your request. Please try again.')];
         }
 
-        $product = strip_tags(trim((string) Tools::getValue('product')));
+        $product = $this->cleanField('product', 2000);
         if ($product === '') {
             return ['success' => false, 'message' => $this->poText('Please describe the product you are looking for.')];
-        }
-        if (Tools::strlen($product) > 2000) {
-            $product = Tools::substr($product, 0, 2000);
         }
 
         $customer = $this->context->customer;
@@ -109,7 +106,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
             $customerName = trim($customer->firstname . ' ' . $customer->lastname);
         } else {
             $email = trim((string) Tools::getValue('email'));
-            $customerName = $settings->show_name ? strip_tags(trim((string) Tools::getValue('customer_name'))) : '';
+            $customerName = $settings->show_name ? $this->cleanField('customer_name', 255) : '';
         }
 
         if (!Validate::isEmail($email)) {
@@ -130,11 +127,11 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $quote->product = $product;
         $quote->customer_name = $customerName;
         $quote->email = $email;
-        $quote->phone = $settings->show_phone ? strip_tags(trim((string) Tools::getValue('phone'))) : '';
-        $quote->address = $settings->show_address ? strip_tags(trim((string) Tools::getValue('address'))) : '';
-        $quote->town = $settings->show_town ? strip_tags(trim((string) Tools::getValue('town'))) : '';
-        $quote->quantity = $settings->show_quantity ? strip_tags(trim((string) Tools::getValue('quantity'))) : '';
-        $quote->destination = $settings->show_destination ? strip_tags(trim((string) Tools::getValue('destination'))) : '';
+        $quote->phone = $settings->show_phone ? $this->cleanField('phone', 64) : '';
+        $quote->address = $settings->show_address ? $this->cleanField('address', 255) : '';
+        $quote->town = $settings->show_town ? $this->cleanField('town', 255) : '';
+        $quote->quantity = $settings->show_quantity ? $this->cleanField('quantity', 64) : '';
+        $quote->destination = $settings->show_destination ? $this->cleanField('destination', 255) : '';
         $quote->urgent = $settings->show_urgency ? (bool) Tools::getValue('urgent') : false;
         $quote->has_paypal = $settings->show_paypal ? (bool) Tools::getValue('has_paypal') : false;
         $quote->first_order = $settings->show_first_order ? (bool) Tools::getValue('first_order') : false;
@@ -142,6 +139,13 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $quote->status = PriceandorderQuoteClass::STATUS_NEW;
 
         if (!$quote->add()) {
+            PrestaShopLogger::addLog(
+                'Priceandorder: could not save a quote request (shop ' . $idShop . ', e-mail ' . $email . ').',
+                3,
+                null,
+                'PriceandorderQuote'
+            );
+
             return ['success' => false, 'message' => $this->poText('We could not save your request. Please try again.')];
         }
 
@@ -166,6 +170,31 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
     private function getThankYouMessage()
     {
         return $this->poText('Thank you! Your quote request has been sent. We will get back to you shortly.');
+    }
+
+    /**
+     * Reads one posted field and makes it safe to store: tags stripped,
+     * whitespace trimmed and the result cut to the width of its own database
+     * column. The maxlength attributes on the form are a convenience for the
+     * visitor, not a limit -- anything posting straight at this controller can
+     * send a field of any length, and an over-long value used to make
+     * ObjectModel refuse the whole row, so a genuine request was lost behind a
+     * generic "please try again".
+     *
+     * @param string $name      posted field name
+     * @param int    $maxLength width of the matching column, in characters
+     *
+     * @return string
+     */
+    private function cleanField($name, $maxLength)
+    {
+        $value = strip_tags(trim((string) Tools::getValue($name)));
+
+        if (Tools::strlen($value) > $maxLength) {
+            $value = Tools::substr($value, 0, $maxLength);
+        }
+
+        return $value;
     }
 
     private function poText($string)

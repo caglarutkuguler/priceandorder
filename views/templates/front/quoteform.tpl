@@ -64,7 +64,7 @@
         {if $po_settings->show_phone}
             <div class="po-group">
                 <label for="po-phone-{$po_context}">{l s='Phone number' mod='priceandorder'}</label>
-                <input type="tel" id="po-phone-{$po_context}" name="phone" maxlength="70">
+                <input type="tel" id="po-phone-{$po_context}" name="phone" maxlength="64">
             </div>
         {/if}
 

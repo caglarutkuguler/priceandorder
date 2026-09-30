@@ -2,6 +2,34 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.1.2
+
+### Fixed
+
+- **A long phone number, address or town could lose the whole request.** The
+  form's `maxlength` attributes are a convenience for the visitor, not a
+  limit: anything posting straight at the module's own controller could send
+  a field of any length. The row was then wider than its column, `ObjectModel`
+  refused it, and the visitor was told to "please try again" while a genuine
+  request went nowhere. Every posted string is now cut to the width of its own
+  column before the row is built -- name and address and town and destination
+  at 255 characters, phone and quantity at 64, the product description at 2000
+  as before. The cut counts characters, not bytes, so accented and non-Latin
+  text is not left half-written.
+- **The phone field promised more than the column could hold.** Its
+  `maxlength` said 70 where the column is 64.
+- **A refused save left no trace.** When the row cannot be written, the
+  failure is now recorded in Advanced Parameters, Logs with the shop and the
+  e-mail address, instead of only showing the visitor a generic message.
+
+### Tests
+
+- `tests/QuoteFieldLimitsTest.php` - seventeen checks over the field limits:
+  every column width, an untouched short value, tag stripping and trimming, a
+  missing field, multi-byte text cut by characters and still valid UTF-8, and
+  the form's own `maxlength` attributes measured against the columns. Plain
+  PHP, no PrestaShop and no database.
+
 ## 2.1.1
 
 ### Fixed
