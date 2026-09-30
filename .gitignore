@@ -1,2 +1,3 @@
 views/img/uploads/*
 !views/img/uploads/index.php
+!views/img/uploads/.htaccess

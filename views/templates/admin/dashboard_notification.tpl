@@ -71,5 +71,5 @@
             {/if}
         </div>
     </div>
-    <a href="{$po_requests_url}" class="po-dash-btn">{l s='View quote requests' mod='priceandorder'}</a>
+    <a href="{$po_requests_url|escape:'html':'UTF-8'}" class="po-dash-btn">{l s='View quote requests' mod='priceandorder'}</a>
 </div>

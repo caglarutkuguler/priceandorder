@@ -63,14 +63,20 @@
                                     {l s='View' mod='priceandorder'}
                                 </a>
                                 &middot;
-                                <a href="{$po_current_index}&token={$po_token}&po_tab=requests&priceandorderToggleStatus&id_priceandorder_quote={$quote.id_priceandorder_quote}">
-                                    {if $quote.status == 1}{l s='Mark as new' mod='priceandorder'}{else}{l s='Mark handled' mod='priceandorder'}{/if}
-                                </a>
+                                <form action="{$po_current_index|escape:'html':'UTF-8'}&amp;token={$po_token|escape:'html':'UTF-8'}&amp;po_tab=requests" method="post" class="po-inline-action">
+                                    <input type="hidden" name="id_priceandorder_quote" value="{$quote.id_priceandorder_quote|intval}">
+                                    <button type="submit" name="priceandorderToggleStatus" value="1" class="po-link-btn">
+                                        {if $quote.status == 1}{l s='Mark as new' mod='priceandorder'}{else}{l s='Mark handled' mod='priceandorder'}{/if}
+                                    </button>
+                                </form>
                                 &middot;
-                                <a href="{$po_current_index}&token={$po_token}&po_tab=requests&deletepriceandorder_quote&id_priceandorder_quote={$quote.id_priceandorder_quote}"
-                                   data-po-confirm="{l s='Delete this quote request?' mod='priceandorder'}">
-                                    {l s='Delete' mod='priceandorder'}
-                                </a>
+                                <form action="{$po_current_index|escape:'html':'UTF-8'}&amp;token={$po_token|escape:'html':'UTF-8'}&amp;po_tab=requests" method="post" class="po-inline-action">
+                                    <input type="hidden" name="id_priceandorder_quote" value="{$quote.id_priceandorder_quote|intval}">
+                                    <button type="submit" name="deletepriceandorder_quote" value="1" class="po-link-btn"
+                                            data-po-confirm="{l s='Delete this quote request?' mod='priceandorder'}">
+                                        {l s='Delete' mod='priceandorder'}
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     {/foreach}

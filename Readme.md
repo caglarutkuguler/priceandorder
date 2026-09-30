@@ -1,6 +1,6 @@
 # Quote Request Pro - Ask For a Custom Price
 
-**Version:** 2.1.2
+**Version:** 2.1.3
 
 *(module technical name: `priceandorder`, formerly "Price and Order - Column Quote Form")*
 

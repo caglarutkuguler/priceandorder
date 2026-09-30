@@ -22,11 +22,14 @@ class Priceandorder extends Module
 
     const QUOTES_PER_PAGE = 20;
 
+    /** Web-accessible promo image storage (under the module path). */
+    const UPLOAD_DIR = 'views/img/uploads/';
+
     public function __construct()
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.1.2';
+        $this->version = '2.1.3';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -79,7 +82,63 @@ class Priceandorder extends Module
             $this->createDefaultSettings((int) $shop['id_shop']);
         }
 
+        $this->ensureUploadDirectory();
+
         return MegVentureReviewNudge::onInstall();
+    }
+
+    /**
+     * Protective .htaccess body for the promo upload folder (Apache 2.2/2.4).
+     * Same pattern as sizechartmeg: php_flag engine off + deny script extensions.
+     * Images (jpg/png/gif/webp) remain readable; script execution is denied.
+     *
+     * @return string
+     */
+    public static function uploadHtaccessContents()
+    {
+        return "<IfModule mod_php.c>\n    php_flag engine off\n</IfModule>\n"
+            . "<IfModule mod_php7.c>\n    php_flag engine off\n</IfModule>\n"
+            . "<IfModule mod_php8.c>\n    php_flag engine off\n</IfModule>\n"
+            . "<FilesMatch \"\\.(php|php\\d|phtml|phar|pl|py|cgi|asp|aspx|sh|shtml)$\">\n"
+            . "    <IfModule mod_authz_core.c>\n        Require all denied\n    </IfModule>\n"
+            . "    <IfModule !mod_authz_core.c>\n        Order allow,deny\n        Deny from all\n    </IfModule>\n"
+            . "</FilesMatch>\n";
+    }
+
+    /**
+     * Creates the upload folder (if missing) and restores .htaccess / index.php
+     * when absent. Called from install, upgrade, configure, and before upload.
+     *
+     * @return bool
+     */
+    public function ensureUploadDirectory()
+    {
+        $dir = _PS_MODULE_DIR_ . $this->name . '/' . self::UPLOAD_DIR;
+
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0755, true);
+        }
+
+        if (!is_dir($dir) || !is_writable($dir)) {
+            return false;
+        }
+
+        if (!file_exists($dir . '.htaccess')) {
+            @file_put_contents($dir . '.htaccess', self::uploadHtaccessContents());
+        }
+
+        if (!file_exists($dir . 'index.php')) {
+            @file_put_contents(
+                $dir . 'index.php',
+                "<?php\n"
+                . "header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');\n"
+                . "header('Cache-Control: no-store, no-cache, must-revalidate');\n"
+                . "header('Pragma: no-cache');\n\n"
+                . "exit;\n"
+            );
+        }
+
+        return true;
     }
 
     public function uninstall()
@@ -414,6 +473,7 @@ class Priceandorder extends Module
         }
 
         $this->installDb();
+        $this->ensureUploadDirectory();
 
         if ((string) $this->database_version !== (string) $this->version) {
             $db = Db::getInstance();
@@ -447,11 +507,16 @@ class Priceandorder extends Module
 
         $output = '';
 
-        if (Tools::isSubmit('submitPriceandorderSettings')) {
+        // State-changing actions must be POST. Tools::isSubmit() also matches
+        // GET query params, so a logged-in employee hitting a crafted URL
+        // (or a prefetch) could otherwise toggle/delete quotes or save settings.
+        $isPost = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
+
+        if ($isPost && Tools::isSubmit('submitPriceandorderSettings')) {
             $output .= $this->processSettingsForm();
-        } elseif (Tools::isSubmit('priceandorderToggleStatus')) {
+        } elseif ($isPost && Tools::isSubmit('priceandorderToggleStatus')) {
             $this->processToggleStatus();
-        } elseif (Tools::isSubmit('deletepriceandorder_quote')) {
+        } elseif ($isPost && Tools::isSubmit('deletepriceandorder_quote')) {
             $this->processDeleteQuote();
         }
 
@@ -547,15 +612,46 @@ class Priceandorder extends Module
 
     private function storePromoImageUpload($idShop)
     {
-        $uploadDir = _PS_MODULE_DIR_ . $this->name . '/views/img/uploads/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-
-        $size = @getimagesize($_FILES['promo_image']['tmp_name']);
-        if (!$size) {
+        if (!$this->ensureUploadDirectory()) {
             return false;
         }
+        $uploadDir = _PS_MODULE_DIR_ . $this->name . '/' . self::UPLOAD_DIR;
+
+        $file = isset($_FILES['promo_image']) && is_array($_FILES['promo_image'])
+            ? $_FILES['promo_image']
+            : null;
+        if (!$file || empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+            return false;
+        }
+
+        // Extension from the client name is only a first filter; the real type
+        // comes from getimagesize() below and becomes the stored suffix.
+        $clientExt = Tools::strtolower(pathinfo((string) $file['name'], PATHINFO_EXTENSION));
+        if ($clientExt === 'jpeg') {
+            $clientExt = 'jpg';
+        }
+        $allowedExt = ['jpg', 'png', 'gif', 'webp'];
+        if (!in_array($clientExt, $allowedExt, true)) {
+            return false;
+        }
+
+        $size = @getimagesize($file['tmp_name']);
+        if (!$size || !isset($size[2])) {
+            return false;
+        }
+
+        $typeMap = [
+            IMAGETYPE_JPEG => 'jpg',
+            IMAGETYPE_PNG => 'png',
+            IMAGETYPE_GIF => 'gif',
+        ];
+        if (defined('IMAGETYPE_WEBP')) {
+            $typeMap[IMAGETYPE_WEBP] = 'webp';
+        }
+        if (!isset($typeMap[$size[2]])) {
+            return false;
+        }
+        $extension = $typeMap[$size[2]];
 
         $maxWidth = 400;
         $maxHeight = 280;
@@ -563,14 +659,13 @@ class Priceandorder extends Module
         $width = (int) round($size[0] * $ratio);
         $height = (int) round($size[1] * $ratio);
 
-        $extension = strtolower(substr($_FILES['promo_image']['name'], strrpos($_FILES['promo_image']['name'], '.') + 1));
         $newName = 'promo_' . (int) $idShop . '_' . bin2hex(random_bytes(4)) . '.' . $extension;
         $destination = $uploadDir . $newName;
 
         // Resize + re-encode (not a plain file move) so any bytes appended
         // after valid image data cannot be smuggled onto the server, and so
         // the image keeps its aspect ratio instead of being stretched.
-        if (!ImageManager::resize($_FILES['promo_image']['tmp_name'], $destination, $width, $height)) {
+        if (!ImageManager::resize($file['tmp_name'], $destination, $width, $height, $extension, true)) {
             return false;
         }
 
@@ -582,7 +677,7 @@ class Priceandorder extends Module
         if ($filename === '') {
             return;
         }
-        $path = _PS_MODULE_DIR_ . $this->name . '/views/img/uploads/' . basename($filename);
+        $path = _PS_MODULE_DIR_ . $this->name . '/' . self::UPLOAD_DIR . basename($filename);
         if (is_file($path)) {
             @unlink($path);
         }

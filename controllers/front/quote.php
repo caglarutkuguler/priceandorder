@@ -64,7 +64,9 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
 
     private function handleSubmission()
     {
-        if (!Tools::isSubmit('priceandorder_submit')) {
+        if (!Tools::isSubmit('priceandorder_submit')
+            || strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? '')) !== 'POST'
+        ) {
             return ['success' => false, 'message' => $this->poText('Invalid request.')];
         }
 
@@ -103,7 +105,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
 
         if ($isLogged) {
             $email = $customer->email;
-            $customerName = trim($customer->firstname . ' ' . $customer->lastname);
+            $customerName = $this->headerSafe(trim($customer->firstname . ' ' . $customer->lastname));
         } else {
             $email = trim((string) Tools::getValue('email'));
             $customerName = $settings->show_name ? $this->cleanField('customer_name', 255) : '';
@@ -174,12 +176,13 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
 
     /**
      * Reads one posted field and makes it safe to store: tags stripped,
-     * whitespace trimmed and the result cut to the width of its own database
-     * column. The maxlength attributes on the form are a convenience for the
-     * visitor, not a limit -- anything posting straight at this controller can
-     * send a field of any length, and an over-long value used to make
-     * ObjectModel refuse the whole row, so a genuine request was lost behind a
-     * generic "please try again".
+     * control characters removed from single-line fields (so a name cannot
+     * inject SMTP/MIME headers), whitespace trimmed and the result cut to
+     * the width of its own database column. The maxlength attributes on the
+     * form are a convenience for the visitor, not a limit -- anything posting
+     * straight at this controller can send a field of any length, and an
+     * over-long value used to make ObjectModel refuse the whole row, so a
+     * genuine request was lost behind a generic "please try again".
      *
      * @param string $name      posted field name
      * @param int    $maxLength width of the matching column, in characters
@@ -189,12 +192,48 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
     private function cleanField($name, $maxLength)
     {
         $value = strip_tags(trim((string) Tools::getValue($name)));
+        $value = str_replace("\0", '', $value);
+
+        // Product description is the only multiline field; keep LF, flatten CR.
+        // Every other column is used in e-mail headers or single-line cells.
+        if ($name === 'product') {
+            $value = str_replace(["\r\n", "\r"], "\n", $value);
+        } else {
+            $value = $this->headerSafe($value);
+        }
 
         if (Tools::strlen($value) > $maxLength) {
             $value = Tools::substr($value, 0, $maxLength);
         }
 
         return $value;
+    }
+
+    /**
+     * Strip CR/LF/NUL so a value is safe as a mail From-name or subject fragment.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    private function headerSafe($value)
+    {
+        $value = str_replace(["\r\n", "\r", "\n", "\0"], ' ', (string) $value);
+
+        return trim(preg_replace('/ {2,}/', ' ', $value));
+    }
+
+    /**
+     * HTML-escape a mail template variable. Templates are HTML; strip_tags on
+     * input is not enough once entities or attribute breakouts are considered.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    private function mailEscape($value)
+    {
+        return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
     }
 
     private function poText($string)
@@ -216,17 +255,17 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $no = $this->poText('No');
 
         $vars = [
-            '{shop_name}' => $shopName,
-            '{shop_url}' => $shopUrl,
-            '{shop_logo}' => $shopLogo,
-            '{customer_name}' => $quote->customer_name !== '' ? $quote->customer_name : $this->poText('Guest'),
-            '{email}' => $quote->email,
-            '{phone}' => $quote->phone,
-            '{address}' => $quote->address,
-            '{town}' => $quote->town,
-            '{product}' => $quote->product,
-            '{quantity}' => $quote->quantity,
-            '{destination}' => $quote->destination,
+            '{shop_name}' => $this->mailEscape($shopName),
+            '{shop_url}' => $this->mailEscape($shopUrl),
+            '{shop_logo}' => $this->mailEscape($shopLogo),
+            '{customer_name}' => $this->mailEscape($quote->customer_name !== '' ? $quote->customer_name : $this->poText('Guest')),
+            '{email}' => $this->mailEscape($quote->email),
+            '{phone}' => $this->mailEscape($quote->phone),
+            '{address}' => $this->mailEscape($quote->address),
+            '{town}' => $this->mailEscape($quote->town),
+            '{product}' => $this->mailEscape($quote->product),
+            '{quantity}' => $this->mailEscape($quote->quantity),
+            '{destination}' => $this->mailEscape($quote->destination),
             '{urgent}' => $quote->urgent ? $yes : $no,
             '{has_paypal}' => $quote->has_paypal ? $yes : $no,
             '{first_order}' => $quote->first_order ? $yes : $no,
@@ -261,7 +300,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
                 $recipients,
                 null,
                 $quote->email,
-                $quote->customer_name !== '' ? $quote->customer_name : $shopName,
+                $quote->customer_name !== '' ? $this->headerSafe($quote->customer_name) : $shopName,
                 null,
                 null,
                 $mailDir,
