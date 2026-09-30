@@ -131,7 +131,7 @@
             <label for="po-promo-image">{l s='Promotional image' mod='priceandorder'}</label>
             {if $po_promo_image_url}
                 <div class="po-promo-preview">
-                    <img src="{$po_promo_image_url}" alt="">
+                    <img src="{$po_promo_image_url|escape:'html':'UTF-8'}" alt="">
                     <label class="po-checkbox"><input type="checkbox" name="remove_promo_image" value="1"> {l s='Remove this image' mod='priceandorder'}</label>
                 </div>
             {/if}

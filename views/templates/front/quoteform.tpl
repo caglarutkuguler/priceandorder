@@ -3,7 +3,7 @@
 * @copyright 2007-2026 MEG Venture & Consulting Ltd.
 * @license   https://opensource.org/licenses/MIT MIT License
 *}
-<div class="po-form" data-context="{$po_context}">
+<div class="po-form" data-context="{$po_context|escape:'html':'UTF-8'}">
     {if $po_flash_success}
         <div class="po-alert po-alert--success">{l s='Thank you! Your quote request has been sent. We will get back to you shortly.' mod='priceandorder'}</div>
     {elseif $po_flash_error}
@@ -11,14 +11,14 @@
     {/if}
     <div class="po-alert" data-po-alert hidden></div>
 
-    <form action="{$po_ajax_url}" method="post" class="po-fields" data-po-form>
-        <input type="hidden" name="priceandorder_token" value="{$po_token}">
+    <form action="{$po_ajax_url|escape:'html':'UTF-8'}" method="post" class="po-fields" data-po-form>
+        <input type="hidden" name="priceandorder_token" value="{$po_token|escape:'html':'UTF-8'}">
         <input type="hidden" name="priceandorder_submit" value="1">
 
         {* Honeypot: real visitors never see this, bots that auto-fill every field do. *}
         <div class="po-hp" aria-hidden="true">
-            <label for="po-hp-{$po_context}">{l s='Leave this field empty' mod='priceandorder'}</label>
-            <input type="text" id="po-hp-{$po_context}" name="priceandorder_confirm_email" tabindex="-1" autocomplete="off">
+            <label for="po-hp-{$po_context|escape:'html':'UTF-8'}">{l s='Leave this field empty' mod='priceandorder'}</label>
+            <input type="text" id="po-hp-{$po_context|escape:'html':'UTF-8'}" name="priceandorder_confirm_email" tabindex="-1" autocomplete="off">
         </div>
 
         <p class="po-intro">
@@ -30,55 +30,55 @@
         </p>
 
         <div class="po-group">
-            <label for="po-product-{$po_context}">{l s='Product name, model or link' mod='priceandorder'} <span class="po-required">*</span></label>
-            <textarea id="po-product-{$po_context}" name="product" rows="4" required maxlength="2000"></textarea>
+            <label for="po-product-{$po_context|escape:'html':'UTF-8'}">{l s='Product name, model or link' mod='priceandorder'} <span class="po-required">*</span></label>
+            <textarea id="po-product-{$po_context|escape:'html':'UTF-8'}" name="product" rows="4" required maxlength="2000"></textarea>
         </div>
 
         {if !$po_is_logged}
             {if $po_settings->show_name}
                 <div class="po-group">
-                    <label for="po-name-{$po_context}">{l s='Full name' mod='priceandorder'} <span class="po-required">*</span></label>
-                    <input type="text" id="po-name-{$po_context}" name="customer_name" maxlength="70" required>
+                    <label for="po-name-{$po_context|escape:'html':'UTF-8'}">{l s='Full name' mod='priceandorder'} <span class="po-required">*</span></label>
+                    <input type="text" id="po-name-{$po_context|escape:'html':'UTF-8'}" name="customer_name" maxlength="70" required>
                 </div>
             {/if}
             <div class="po-group">
-                <label for="po-email-{$po_context}">{l s='E-mail address' mod='priceandorder'} <span class="po-required">*</span></label>
-                <input type="email" id="po-email-{$po_context}" name="email" maxlength="255" required>
+                <label for="po-email-{$po_context|escape:'html':'UTF-8'}">{l s='E-mail address' mod='priceandorder'} <span class="po-required">*</span></label>
+                <input type="email" id="po-email-{$po_context|escape:'html':'UTF-8'}" name="email" maxlength="255" required>
             </div>
         {/if}
 
         {if $po_settings->show_address}
             <div class="po-group">
-                <label for="po-address-{$po_context}">{l s='Address' mod='priceandorder'}</label>
-                <input type="text" id="po-address-{$po_context}" name="address" maxlength="255">
+                <label for="po-address-{$po_context|escape:'html':'UTF-8'}">{l s='Address' mod='priceandorder'}</label>
+                <input type="text" id="po-address-{$po_context|escape:'html':'UTF-8'}" name="address" maxlength="255">
             </div>
         {/if}
 
         {if $po_settings->show_town}
             <div class="po-group">
-                <label for="po-town-{$po_context}">{l s='Town / City' mod='priceandorder'}</label>
-                <input type="text" id="po-town-{$po_context}" name="town" maxlength="255">
+                <label for="po-town-{$po_context|escape:'html':'UTF-8'}">{l s='Town / City' mod='priceandorder'}</label>
+                <input type="text" id="po-town-{$po_context|escape:'html':'UTF-8'}" name="town" maxlength="255">
             </div>
         {/if}
 
         {if $po_settings->show_phone}
             <div class="po-group">
-                <label for="po-phone-{$po_context}">{l s='Phone number' mod='priceandorder'}</label>
-                <input type="tel" id="po-phone-{$po_context}" name="phone" maxlength="64">
+                <label for="po-phone-{$po_context|escape:'html':'UTF-8'}">{l s='Phone number' mod='priceandorder'}</label>
+                <input type="tel" id="po-phone-{$po_context|escape:'html':'UTF-8'}" name="phone" maxlength="64">
             </div>
         {/if}
 
         {if $po_settings->show_quantity}
             <div class="po-group">
-                <label for="po-quantity-{$po_context}">{l s='Quantity needed' mod='priceandorder'}</label>
-                <input type="text" id="po-quantity-{$po_context}" name="quantity" maxlength="64">
+                <label for="po-quantity-{$po_context|escape:'html':'UTF-8'}">{l s='Quantity needed' mod='priceandorder'}</label>
+                <input type="text" id="po-quantity-{$po_context|escape:'html':'UTF-8'}" name="quantity" maxlength="64">
             </div>
         {/if}
 
         {if $po_settings->show_destination}
             <div class="po-group">
-                <label for="po-destination-{$po_context}">{l s='Shipping destination' mod='priceandorder'}</label>
-                <input type="text" id="po-destination-{$po_context}" name="destination" maxlength="255">
+                <label for="po-destination-{$po_context|escape:'html':'UTF-8'}">{l s='Shipping destination' mod='priceandorder'}</label>
+                <input type="text" id="po-destination-{$po_context|escape:'html':'UTF-8'}" name="destination" maxlength="255">
             </div>
         {/if}
 
@@ -107,9 +107,9 @@
                 <input type="checkbox" name="priceandorder_consent" value="1" required>
                 {if $po_terms_link || $po_privacy_link}
                     {l s='I agree to the' mod='priceandorder'}
-                    {if $po_terms_link}<a href="{$po_terms_link}" target="_blank" rel="noopener">{l s='Terms & Conditions' mod='priceandorder'}</a>{/if}
+                    {if $po_terms_link}<a href="{$po_terms_link|escape:'html':'UTF-8'}" target="_blank" rel="noopener">{l s='Terms & Conditions' mod='priceandorder'}</a>{/if}
                     {if $po_terms_link && $po_privacy_link}{l s='and' mod='priceandorder'}{/if}
-                    {if $po_privacy_link}<a href="{$po_privacy_link}" target="_blank" rel="noopener">{l s='Privacy Policy' mod='priceandorder'}</a>{/if}
+                    {if $po_privacy_link}<a href="{$po_privacy_link|escape:'html':'UTF-8'}" target="_blank" rel="noopener">{l s='Privacy Policy' mod='priceandorder'}</a>{/if}
                 {else}
                     {l s='I agree that this website may use my information to reply to this request.' mod='priceandorder'}
                 {/if}
@@ -124,8 +124,8 @@
 
     {if $po_more_info_link || $po_promo_image_url}
         <div class="po-promo">
-            {if $po_promo_image_url}<img src="{$po_promo_image_url}" alt="{l s='Our best offer' mod='priceandorder'}">{/if}
-            {if $po_more_info_link}<a href="{$po_more_info_link}" target="_blank" rel="noopener">{l s='Learn more' mod='priceandorder'}</a>{/if}
+            {if $po_promo_image_url}<img src="{$po_promo_image_url|escape:'html':'UTF-8'}" alt="{l s='Our best offer' mod='priceandorder'}">{/if}
+            {if $po_more_info_link}<a href="{$po_more_info_link|escape:'html':'UTF-8'}" target="_blank" rel="noopener">{l s='Learn more' mod='priceandorder'}</a>{/if}
         </div>
     {/if}
 </div>

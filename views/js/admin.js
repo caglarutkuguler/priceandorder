@@ -54,9 +54,9 @@
     }
 
     function initConfirmLinks() {
-        document.querySelectorAll('[data-po-confirm]').forEach(function (link) {
-            link.addEventListener('click', function (event) {
-                if (!window.confirm(link.getAttribute('data-po-confirm'))) {
+        document.querySelectorAll('[data-po-confirm]').forEach(function (el) {
+            el.addEventListener('click', function (event) {
+                if (!window.confirm(el.getAttribute('data-po-confirm'))) {
                     event.preventDefault();
                 }
             });

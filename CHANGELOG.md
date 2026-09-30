@@ -2,6 +2,36 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.1.3
+
+### Security
+
+- **Admin quote and settings actions ignored GET.** Toggle status, delete, and
+  settings save now require `POST`. The Requests tab uses small POST forms
+  instead of query-string links, so a crafted admin URL or browser prefetch
+  cannot change or delete a request.
+- **Promo image upload no longer trusts the filename suffix.** The file must
+  be a real uploaded image (`is_uploaded_file`), pass an allowlisted client
+  extension, and map to JPEG/PNG/GIF/WEBP via `getimagesize`; the stored
+  extension comes from that map after `ImageManager::resize` re-encodes.
+- **Promo upload folder denies PHP execution on Apache.** `views/img/uploads/`
+  ships with an `.htaccess` (`php_flag engine off` + script extension deny,
+  Apache 2.2/2.4). Install, upgrade to 2.1.3, configure, and upload all call
+  `ensureUploadDirectory()` so the file is recreated if the folder is remade.
+- **Storefront link and image URLs are HTML-escaped** in the quote form (and
+  matching admin preview/dashboard URLs), so a merchant-saved `http(s)` value
+  that contains a quote cannot break out of an `href`/`src` attribute.
+- **Quote submissions must be POST.** A GET with `priceandorder_submit` is
+  rejected.
+- **Visitor fields cannot inject mail headers or HTML.** Single-line fields
+  strip CR/LF/NUL; notification mail variables are HTML-escaped before send.
+
+### Tests
+
+- `tests/SecurityGuardsTest.php` — static guards for the fixes above.
+- `tests/QuoteFieldLimitsTest.php` — CR/LF stripping and product LF keep.
+- `TEST_CHECKLIST.md` — manual verification for 2.1.3.
+
 ## 2.1.2
 
 ### Fixed
