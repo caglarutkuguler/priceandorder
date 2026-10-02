@@ -1,0 +1,3 @@
+# Keep tests in the public tree for contributors, but omit from GitHub zipball /
+# git archive so virtualproductcombination autosync matches the sanitised package.
+tests/ export-ignore
