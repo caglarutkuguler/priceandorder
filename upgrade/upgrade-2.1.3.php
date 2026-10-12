@@ -9,9 +9,9 @@ if (!defined('_PS_VERSION_')) {
 }
 
 /**
- * 2.1.2 -> 2.1.3: security fixes plus upload-folder .htaccess (PAO-2 residual).
- * Force-writes the protective .htaccess so upgrades from ≤2.1.2 get it even
- * when the directory already existed without one.
+ * 2.1.2 -> 2.1.3 maintenance step.
+ * Ensures the promo upload folder exists with its standard configuration,
+ * including on installs where the directory was created by an earlier version.
  *
  * @param Module $module
  *
