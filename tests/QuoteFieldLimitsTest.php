@@ -114,6 +114,14 @@ check('short value untouched', cleanField($controller, $clean, 'town', 255), 'Ka
 $posted = ['address' => "  <b>Bahce</b> sokak 12  "];
 check('tags stripped and trimmed', cleanField($controller, $clean, 'address', 255), 'Bahce sokak 12');
 
+// 3b. Single-line fields must not keep CR/LF (mail header injection).
+$posted = ['customer_name' => "Jane\r\nBcc: evil@example.com"];
+check('CR/LF stripped from name', cleanField($controller, $clean, 'customer_name', 255), 'Jane Bcc: evil@example.com');
+
+// 3c. Product description may keep newlines (normalized to LF).
+$posted = ['product' => "Line one\r\nLine two"];
+check('product keeps LF', cleanField($controller, $clean, 'product', 2000), "Line one\nLine two");
+
 // 4. A missing field becomes an empty string, never false.
 $posted = [];
 check('missing field is an empty string', cleanField($controller, $clean, 'phone', 64), '');
