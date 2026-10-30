@@ -530,7 +530,7 @@ class Priceandorder extends Module
 
         $content = $this->display(__FILE__, 'views/templates/admin/configure.tpl');
 
-        return $nudge . $content . MegVentureAdsWidget::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
+        return $nudge . $content . MegVentureAdsWidgetV2::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
     }
 
     private function processSettingsForm()
