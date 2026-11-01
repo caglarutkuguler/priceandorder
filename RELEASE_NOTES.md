@@ -4,9 +4,6 @@ _Only customer-relevant changes are listed. Internal refactoring, tests and hous
 
 ## 2.1.4
 
-### Improved
-- `TEST_CHECKLIST.md` — manual verification for 2.1.4
-
 ### Fixed
 - Admin quote and settings actions ignored GET. Toggle status, delete, and settings save now require `POST`. The Requests tab uses small POST forms instead of query-string links, so a crafted admin URL or browser prefetch cannot change or delete a request
 - Storefront link and image URLs are HTML-escaped in the quote form (and matching admin preview/dashboard URLs), so a merchant-saved `http(s)` value that contains a quote cannot break out of an `href`/`src` attribute
