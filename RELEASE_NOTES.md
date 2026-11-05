@@ -2,6 +2,11 @@
 
 _Only customer-relevant changes are listed. Internal refactoring, tests and housekeeping are omitted._
 
+## 2.1.5
+
+### New
+- The configuration page links to the free MEG Venture Updates module, which installs updates for this module in one click. The line is hidden once that module is installed
+
 ## 2.1.4
 
 ### Fixed
@@ -15,9 +20,3 @@ _Only customer-relevant changes are listed. Internal refactoring, tests and hous
 ### Improved
 - Security hardening and stability improvements. Recommended for all shops
 - This is a maintenance release: no feature changes and no configuration changes. Existing settings and saved quote requests are kept, and the upgrade step runs automatically when the module is updated
-
-## 2.1.2
-
-### Fixed
-- The phone field promised more than the column could hold. Its `maxlength` said 70 where the column is 64
-- A refused save left no trace. When the row cannot be written, the failure is now recorded in Advanced Parameters, Logs with the shop and the e-mail address, instead of only showing the visitor a generic message
