@@ -2,6 +2,12 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.1.5
+
+### Added
+
+- The configuration page links to the free MEG Venture Updates module, which installs updates for this module in one click. The line is hidden once that module is installed.
+
 ## 2.1.4
 
 ### Security
