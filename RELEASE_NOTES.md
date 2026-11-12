@@ -2,6 +2,17 @@
 
 _Only customer-relevant changes are listed. Internal refactoring, tests and housekeeping are omitted._
 
+## 2.1.6
+
+### New
+- With multistore active, the configuration page shows a notice in the All shops and shop group contexts, and refuses to save settings, change a request's status or delete a request there, because those belong to a single shop. Pick one shop in the shop selector to do them
+
+### Improved
+- The logo in the quote e-mails is now read explicitly for the shop the request was sent from, like the shop name and the sender address already were
+
+### Fixed
+- Multistore only: opening the configuration page switched the back-office shop context to All shops and left it there for the rest of the request. The previous shop or group context is now restored, also after install
+
 ## 2.1.5
 
 ### New
@@ -14,9 +25,3 @@ _Only customer-relevant changes are listed. Internal refactoring, tests and hous
 - Storefront link and image URLs are HTML-escaped in the quote form (and matching admin preview/dashboard URLs), so a merchant-saved `http(s)` value that contains a quote cannot break out of an `href`/`src` attribute
 - Quote submissions must be POST. A GET with `priceandorder_submit` is rejected
 - Visitor fields cannot inject mail headers or HTML. Single-line fields strip CR/LF/NUL; notification mail variables are HTML-escaped before send
-
-## 2.1.3
-
-### Improved
-- Security hardening and stability improvements. Recommended for all shops
-- This is a maintenance release: no feature changes and no configuration changes. Existing settings and saved quote requests are kept, and the upgrade step runs automatically when the module is updated
