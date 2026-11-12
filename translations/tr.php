@@ -247,3 +247,5 @@ $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b0
 $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Tamam, bir daha sormayacağız.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_2831420e2c343c00fc80bb8b4634e559'] = 'Bu modülün güncellemelerini tek tıkla almak için ücretsiz MEG Venture Updates modülünü kurun.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_9ffdb95250e26c7a6b468126ac7c75b0'] = 'Nasıl çalışır';
+$_MODULE['<{priceandorder}prestashop>priceandorder_9f00567da5fd2427f268f4de64b46b54'] = 'Tüm mağazalar veya bir mağaza grubu bağlamındasınız. Burada kaydedilen ayarlar, kendi değeri olmayan her mağaza için varsayılan olur. Mağazaya özel içerik her seferinde tek bir mağaza için düzenlenir; bu yüzden önce mağaza seçiciden tek bir mağaza seçin.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_ea23be9efaae5b33818b90c52471157b'] = 'Bu işlem tek bir mağazaya ait içeriği değiştirir. Önce mağaza seçiciden tek bir mağaza seçin; hiçbir şey kaydedilmedi.';

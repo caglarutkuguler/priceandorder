@@ -247,3 +247,5 @@ $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b0
 $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Prima, we vragen het niet opnieuw.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_2831420e2c343c00fc80bb8b4634e559'] = 'Ontvang updates voor deze module met één klik: installeer de gratis module MEG Venture Updates.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_9ffdb95250e26c7a6b468126ac7c75b0'] = 'Zo werkt het';
+$_MODULE['<{priceandorder}prestashop>priceandorder_9f00567da5fd2427f268f4de64b46b54'] = 'U bevindt zich in de context Alle winkels of een winkelgroep. Instellingen die hier worden opgeslagen, worden de standaardwaarde voor elke winkel zonder eigen waarde. Winkelspecifieke inhoud wordt per winkel bewerkt, dus kies eerst één winkel in de winkelkiezer.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_ea23be9efaae5b33818b90c52471157b'] = 'Deze actie wijzigt inhoud die bij één winkel hoort. Kies eerst een winkel in de winkelkiezer; er is niets opgeslagen.';

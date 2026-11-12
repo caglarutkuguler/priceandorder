@@ -247,7 +247,7 @@ class PriceandorderQuoteModuleFrontController extends ModuleFrontController
         $idLang = (int) $quote->id_lang;
         $shopName = Configuration::get('PS_SHOP_NAME', null, null, $idShop);
         $shopEmail = Configuration::get('PS_SHOP_EMAIL', null, null, $idShop);
-        $logoFile = Configuration::get('PS_LOGO');
+        $logoFile = Configuration::get('PS_LOGO', null, null, $idShop);
         $shopUrl = rtrim($this->context->shop->getBaseURL(true), '/');
         $shopLogo = $logoFile ? ($shopUrl . '/img/' . $logoFile) : '';
 

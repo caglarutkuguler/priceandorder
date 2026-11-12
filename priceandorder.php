@@ -29,7 +29,7 @@ class Priceandorder extends Module
     {
         $this->name = 'priceandorder';
         $this->tab = 'pricing_promotion';
-        $this->version = '2.1.5';
+        $this->version = '2.1.6';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -63,10 +63,18 @@ class Priceandorder extends Module
     {
         require_once dirname(__FILE__) . '/classes/MegVentureReviewNudge.php';
 
-        if (Shop::isFeatureActive()) {
-            Shop::setContext(Shop::CONTEXT_ALL);
+        $previousContext = Shop::isFeatureActive() ? $this->switchToAllShopsContext() : null;
+        try {
+            return $this->runInstall();
+        } finally {
+            if ($previousContext !== null) {
+                $this->restoreShopContext($previousContext);
+            }
         }
+    }
 
+    private function runInstall()
+    {
         if (!parent::install()
             || !$this->registerHook('displayHeader')
             || !$this->registerHook('displayLeftColumn')
@@ -458,10 +466,23 @@ class Priceandorder extends Module
      */
     private function ensureUpToDate()
     {
-        if (Shop::isFeatureActive()) {
-            Shop::setContext(Shop::CONTEXT_ALL);
+        $previousContext = Shop::isFeatureActive() ? $this->switchToAllShopsContext() : null;
+        try {
+            $this->reassertHooksAndSchema();
+        } finally {
+            if ($previousContext !== null) {
+                $this->restoreShopContext($previousContext);
+            }
         }
+    }
 
+    /**
+     * Hooks and tables are registered for every shop, so this runs in the
+     * All shops context set up by ensureUpToDate(), which puts the previous
+     * context back afterwards.
+     */
+    private function reassertHooksAndSchema()
+    {
         if ($this->isRegisteredInHook('displayDashboardTop')) {
             $this->unregisterHook('displayDashboardTop');
         }
@@ -484,6 +505,58 @@ class Priceandorder extends Module
             );
             $this->database_version = $this->version;
         }
+    }
+
+    /**
+     * Switches to the All shops context and returns what to restore afterwards.
+     *
+     * @return array [context type, shop id, shop group id]
+     */
+    private function switchToAllShopsContext()
+    {
+        $previous = [Shop::getContext(), Shop::getContextShopID(), Shop::getContextShopGroupID()];
+        Shop::setContext(Shop::CONTEXT_ALL);
+
+        return $previous;
+    }
+
+    /**
+     * @param array $previous value returned by switchToAllShopsContext()
+     */
+    private function restoreShopContext(array $previous)
+    {
+        if ($previous[0] == Shop::CONTEXT_SHOP) {
+            Shop::setContext(Shop::CONTEXT_SHOP, (int) $previous[1]);
+        } elseif ($previous[0] == Shop::CONTEXT_GROUP) {
+            Shop::setContext(Shop::CONTEXT_GROUP, (int) $previous[2]);
+        } else {
+            Shop::setContext(Shop::CONTEXT_ALL);
+        }
+    }
+
+    /**
+     * True with multistore active outside a single shop context.
+     *
+     * @return bool
+     */
+    private function isMultiShopContext()
+    {
+        return Shop::isFeatureActive() && Shop::getContext() != Shop::CONTEXT_SHOP;
+    }
+
+    /**
+     * Warning shown in the All shops / shop group context, where the settings
+     * and the quote list of one shop cannot be edited.
+     *
+     * @return string
+     */
+    private function renderShopContextNotice()
+    {
+        if (!$this->isMultiShopContext()) {
+            return '';
+        }
+
+        return $this->displayWarning($this->l('You are in the All shops or a shop group context. Settings saved here become the default for every shop that has no value of its own. Per-shop content is edited one shop at a time, so pick a single shop in the shop selector first.'));
     }
 
     /**
@@ -535,7 +608,13 @@ class Priceandorder extends Module
         // (or a prefetch) could otherwise toggle/delete quotes or save settings.
         $isPost = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? '')) === 'POST';
 
-        if ($isPost && Tools::isSubmit('submitPriceandorderSettings')) {
+        if ($isPost && $this->isMultiShopContext()
+            && (Tools::isSubmit('submitPriceandorderSettings')
+                || Tools::isSubmit('priceandorderToggleStatus')
+                || Tools::isSubmit('deletepriceandorder_quote'))
+        ) {
+            $output .= $this->displayError($this->l('This action changes content that belongs to a single shop. Pick one shop in the shop selector first; nothing was saved.'));
+        } elseif ($isPost && Tools::isSubmit('submitPriceandorderSettings')) {
             $output .= $this->processSettingsForm();
         } elseif ($isPost && Tools::isSubmit('priceandorderToggleStatus')) {
             $this->processToggleStatus();
@@ -553,7 +632,7 @@ class Priceandorder extends Module
 
         $content = $this->display(__FILE__, 'views/templates/admin/configure.tpl');
 
-        return $nudge . $content . $this->renderMvuNotice() . MegVentureAdsWidgetV2::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
+        return $nudge . $this->renderShopContextNotice() . $content . $this->renderMvuNotice() . MegVentureAdsWidgetV2::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
     }
 
     private function processSettingsForm()

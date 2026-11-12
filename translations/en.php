@@ -245,3 +245,5 @@ $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b0
 $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Okay, we will not ask again.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_2831420e2c343c00fc80bb8b4634e559'] = 'Get updates for this module in one click: install the free MEG Venture Updates module.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_9ffdb95250e26c7a6b468126ac7c75b0'] = 'How it works';
+$_MODULE['<{priceandorder}prestashop>priceandorder_9f00567da5fd2427f268f4de64b46b54'] = 'You are in the All shops or a shop group context. Settings saved here become the default for every shop that has no value of its own. Per-shop content is edited one shop at a time, so pick a single shop in the shop selector first.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_ea23be9efaae5b33818b90c52471157b'] = 'This action changes content that belongs to a single shop. Pick one shop in the shop selector first; nothing was saved.';

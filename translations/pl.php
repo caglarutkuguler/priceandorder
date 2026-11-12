@@ -247,3 +247,5 @@ $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b0
 $_MODULE['<{priceandorder}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Dobrze, nie zapytamy ponownie.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_2831420e2c343c00fc80bb8b4634e559'] = 'Aktualizuj ten moduł jednym kliknięciem: zainstaluj darmowy moduł MEG Venture Updates.';
 $_MODULE['<{priceandorder}prestashop>priceandorder_9ffdb95250e26c7a6b468126ac7c75b0'] = 'Jak to działa';
+$_MODULE['<{priceandorder}prestashop>priceandorder_9f00567da5fd2427f268f4de64b46b54'] = 'Jesteś w kontekście Wszystkie sklepy lub grupy sklepów. Ustawienia zapisane tutaj stają się wartością domyślną dla każdego sklepu, który nie ma własnej wartości. Treści właściwe dla sklepu edytuje się po jednym sklepie naraz, dlatego najpierw wybierz jeden sklep w selektorze sklepów.';
+$_MODULE['<{priceandorder}prestashop>priceandorder_ea23be9efaae5b33818b90c52471157b'] = 'To działanie zmienia treści należące do jednego sklepu. Najpierw wybierz sklep w selektorze sklepów; nic nie zostało zapisane.';

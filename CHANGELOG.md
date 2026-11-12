@@ -2,6 +2,20 @@
 
 All notable changes to **Quote Request Pro - Ask For a Custom Price** (`priceandorder`).
 
+## 2.1.6
+
+### Added
+
+- With multistore active, the configuration page shows a notice in the All shops and shop group contexts, and refuses to save settings, change a request's status or delete a request there, because those belong to a single shop. Pick one shop in the shop selector to do them.
+
+### Fixed
+
+- Multistore only: opening the configuration page switched the back-office shop context to All shops and left it there for the rest of the request. The previous shop or group context is now restored, also after install.
+
+### Changed
+
+- The logo in the quote e-mails is now read explicitly for the shop the request was sent from, like the shop name and the sender address already were.
+
 ## 2.1.5
 
 ### Added
